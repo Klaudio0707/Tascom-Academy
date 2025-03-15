@@ -18,3 +18,20 @@
 //     quinta,
 //     sexta
 // };
+
+let altura: number = 1.90;
+
+const nomeCarro: string = "Gol Bola"
+
+const estadoCarro: boolean = true;
+
+const carro: {nome: string, cor: string, ano: number} ={
+nome: "Palio",
+cor: "Branco",
+ano: 2010
+}
+enum horario{
+    manha,
+    tarde,
+    noite,
+}
