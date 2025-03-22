@@ -22,7 +22,6 @@
 // console.log(resultado);
 
 let valueEntrada: number = 6;
-//teste
 
 if (valueEntrada % 2 == 0) {
   console.log(`Valor ${valueEntrada} é par`);
