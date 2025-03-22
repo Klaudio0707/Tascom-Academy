@@ -35,3 +35,8 @@ enum horario{
     tarde,
     noite,
 }
+
+console.log(nomeCarro);
+console.log(estadoCarro);
+console.log(carro);
+console.log(horario);
