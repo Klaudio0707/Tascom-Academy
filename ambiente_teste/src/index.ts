@@ -9,13 +9,23 @@
 //     console.log("pessoa menor de idade ")
 // }
 // operador ternário
-let nota1: number= 6;
-let nota2: number= 9;
-let nota3: number= 7;
-let nota4: number= 5;
 
-let media: number = (nota1 + nota2 + nota3 + nota4) /4;
+// let nota1: number= 6;
+// let nota2: number= 9;
+// let nota3: number= 7;
+// let nota4: number= 5;
 
-let resultado: string = media >= 6 ? `Aprovado! nota: ${media}`: `Reprovado! nota: ${media}` 
+// let media: number = (nota1 + nota2 + nota3 + nota4) /4;
 
-console.log(resultado);
+// let resultado: string = media >= 6 ? `Aprovado! nota: ${media}`: `Reprovado! nota: ${media}`
+
+// console.log(resultado);
+
+let valueEntrada: number = 6;
+//teste
+
+if (valueEntrada % 2 == 0) {
+  console.log(`Valor ${valueEntrada} é par`);
+} else {
+  console.log(`Valor ${valueEntrada}  é impar`); 
+}
