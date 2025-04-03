@@ -1,0 +1,21 @@
+{
+  "name": "prompt_interativo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/readline-sync": "^1.4.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
