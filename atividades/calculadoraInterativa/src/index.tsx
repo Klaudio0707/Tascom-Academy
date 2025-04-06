@@ -43,3 +43,4 @@ const calculadora = (valor1: number, valor2: number, operador: string) => {
                         calculadora(valor1,valor2,operador);
                         condicao = readlineSync.keyInYN("Deseja calcular um novo valor? ")
                     }
+                    console.log("Obrigado por usar a Calculadora interativa!!")
