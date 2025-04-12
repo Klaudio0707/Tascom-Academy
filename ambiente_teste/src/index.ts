@@ -57,11 +57,11 @@
 // const valorInput1: number = 10;
 // const valorInput2: number = 2;
 // let operacao: string = "-jhghk";
- 
+
 //  switch (operacao) {
 // case "-" : console.log(valorInput1 - valorInput2); 
 // break;
- 
+
 //  case "+" : console.log(valorInput1 + valorInput2); 
 // break;
 
@@ -73,13 +73,13 @@
 // default:
 //     console.log("Operador inválido")
 // }
- 
+
 
 // let numb: number = 100;
 
 
 //     for (let i:number = 0; i <= numb; i++) {
-        
+
 //         if( i % 2 === 0){
 //             console.log(`${i} par`)
 //         }
@@ -94,8 +94,8 @@
 //     for (let valor= 1; valor <= 10; valor++) {
 //         resultado = multiplicador * valor;
 //         console.log(`${valor} x ${multiplicador}=`, resultado)
-        
-        
+
+
 //     }
 // }else{
 //     console.log("informe um valor positivo")
@@ -111,12 +111,11 @@
 
 // }
 //     console.log(incrementador)
-    
 
 
 
-import readlineSync from "readline-sync";
+
+// import readlineSync from "readline-sync";
 
 // let pergunta = readlineSync.question("Qual seu nome")
 
-    
