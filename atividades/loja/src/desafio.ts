@@ -2,7 +2,6 @@ import readlineSync from "readline-sync";
 
 
 interface produtos {
-    id: number,
     name: string,
     price: number,
     categoria: string,
@@ -10,18 +9,17 @@ interface produtos {
 }
 //array de objetos
 let produtos = [
-    {   id:0, name:"celular",price:10.5, categoria:"Eletronico", estoque: 10
+    {    name:"celular",price:10.5, categoria:"Eletronico", estoque: 10
     },
 ]
 let status = readlineSync.keyInYN("Deseja Utilizar o Programa da Loja ?\n Digite Y para sim e N para não ");
 
-let inc: number = 1;
 while(status){
 
    
     const adicionarProduto = (nome: string, preco: number, categoria: string, estoque: number) => {
     
-    const novosProdutos: produtos = ({id:inc++, name:nome, price:preco, categoria:categoria, estoque:estoque})
+    const novosProdutos: produtos = ({ name:nome, price:preco, categoria:categoria, estoque:estoque})
     produtos.push(novosProdutos);
     return novosProdutos; 
         
@@ -32,11 +30,14 @@ while(status){
     const estoque= readlineSync.questionInt("Digite a quantidade p/ adicionar ao estoque: ")
     
     
+    //execução das funções
     let resultado: object = adicionarProduto(name, price, categoria, estoque );
-   
+    
+    //imprimir resultado
     console.log(produtos);
+    console.table(produtos);
     console.log(resultado);
-    console.log(inc);
+  
 
     status = readlineSync.keyInYN("Deseja ainda continuar a usar o sistema ? ");
 }
