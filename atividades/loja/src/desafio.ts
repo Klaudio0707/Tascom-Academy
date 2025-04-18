@@ -24,6 +24,7 @@ while(status){
     return novosProdutos; 
         
     }
+
     const name = readlineSync.question("Digite o nome do produto: ");
     const price = readlineSync.questionFloat("Informe o preço: ");
     const categoria = readlineSync.question("Digite a categoria: ");
