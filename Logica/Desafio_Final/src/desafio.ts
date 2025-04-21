@@ -1,11 +1,12 @@
 //imports
 import * as readline from 'readline-sync';
+//interface para tipagem dos dois arrays de objetos
 interface Candidato {
     nome: string,
     rg: number,
     chapa: string,
     numero: number,
-    tipo: string
+    candidatura: string
 }
 interface Eleitor {
     nome: string,
@@ -16,10 +17,10 @@ interface Eleitor {
 //enums
 enum Cargos {
     Prefeitura = 1,
-    CamaraVereadores = 2,
+    Vereador = 2,
 }
-let Candidados: Candidato[] = [
-    { nome: "moaci", rg: 103040, chapa: "", numero: 13, tipo: "Prefeitura" }
+let Candidatos: Candidato[] = [
+    { nome: "moaci", rg: 103040, chapa: "", numero: 10, candidatura: "Prefeitura" }
 ]
 
 
@@ -31,18 +32,40 @@ let Eleitores: Eleitor[] = [
 let status: boolean | string = false;
 let opcoes: number = 0;
 
+let nome: string = "";
+let rg: number = 0;
+let chapa: string = "";
+let numero: number = 0;
+let tipoCandidato: number = 0;
 
 
+   const inputsConsole =(): void => {
+            
+            nome= readline.question("Digite o nome do candidato ");
+            rg = readline.questionInt("Informe o rg ");
+            chapa = readline.question("Digite o nome da chapa do candidato ");
+            numero  = readline.questionInt("Digite o numero ");
+            tipoCandidato = readline.questionInt("Tipo 1 para Prefeito(a) e 2 para Vereador(a) ")
+
+    }
+    const cadastrarCandidato = (nomeCandidato: string, rgCandidato: number,chapaCandidato:string, numeroCandidato: number, tipoCandidato: string) => {
+        const novoCandidato: Candidato = ({ nome: nomeCandidato, rg: rgCandidato, chapa: chapaCandidato, numero: numeroCandidato, candidatura: tipoCandidato })
+        Candidatos.push(novoCandidato);
+        return novoCandidato;
+    }
+    status = readline.keyInYN("Deseja iniciar utilizar o sistema de votacao? ");
 do {
     console.log("Seja bem vindo a votação Municipal da cidade de Quixabinha ");
 
-    status = readline.keyInYN("Deseja iniciar utilizar o sistema de votacao? ");
 
     if (status === true) {
-        opcoes = readline.questionFloat("Cadastrar um Candidado = Digite 1 n\Cadastrar Eleitor = Digite 2 \nRealizar o voto = Digite 3 ");
+        opcoes = readline.questionInt("Cadastrar Candidado = Digite 1 \nCadastrar Eleitor = Digite 2 \nRealizar o voto = Digite 3\n ");
         switch (opcoes) {
             case 1:
                 console.log("Cadastro de Candidato")
+                inputsConsole();
+                cadastrarCandidato(nome, rg, chapa, numero ,Cargos[tipoCandidato]);
+                console.table(Candidatos);
                 status = readline.keyInYN("Deseja continuar ?")
                 break;
 
@@ -54,7 +77,9 @@ do {
                 console.log("Efetuar Voto")
                 break;
             case 4:
-
+                console.log("Encerrando o sistema...");
+                status = false;
+                break;
             default:
                 break;
         }
@@ -66,7 +91,8 @@ do {
     //     const checkStatus = (status:number) =>{
     //         switch(status) {
     //     case Cargos.Prefeitura:
-    //         console.log("Prefeito")
+    //         inputsConsole();
+    //             cadastrarCandidato(nome, rg, numero);
     //     break;
     //     case Cargos.CamaraVereadores:
     //         console.log("Vereador");
@@ -74,6 +100,5 @@ do {
     // }
     // }
     // checkStatus(opcao);
-} while (status) {
+} while (status) 
     console.log("Obrigado e volte sempre");
-}
