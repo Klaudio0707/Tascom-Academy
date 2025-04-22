@@ -39,15 +39,14 @@ let numero: number = 0;
 let tipoCandidato: number = 0;
 let apto: boolean = false;
 
+const candidatoExiste = (cpf: number): boolean => {
+    const filtrados = Candidatos.filter(candidato => candidato.cpf === cpf);
+    return filtrados[0] !== undefined;
+}
+
 const inputsCandidato = (): Candidato => {
     const nome = readline.question("Digite o nome do candidato: ");
     const cpf = readline.questionInt("Informe o CPF: ");
-
-    const jaExiste = Candidatos.some(c => c.cpf === cpf);
-    if (jaExiste) {
-        console.log("❌ Candidato já cadastrado!");
-        return null as any; // você pode tratar isso melhor depois
-    }
 
     const chapa = readline.question("Digite o nome da chapa do candidato: ");
     const numero = readline.questionInt("Digite o número: ");
@@ -58,9 +57,6 @@ const inputsCandidato = (): Candidato => {
     return { nome, cpf, chapa, numero, candidatura };
 };
 
-const candidatoExiste = (cpf: number): boolean => {
-    return Candidatos.filter(candidato => candidato.cpf === cpf)[0] !== undefined;
-};
 
 
 // const filterCandidatos = (inputCpf: number,) => {
@@ -98,17 +94,20 @@ do {
         switch (opcoes) {
             case 1:
                 console.clear();
-    console.log("Cadastro de Candidato");
-    
-    const novoCandidato = inputsCandidato();
-    
-    if (novoCandidato) {
-        Candidatos.push(novoCandidato);
-        console.table(Candidatos);
-    }
+                console.log("Cadastro de Candidato");
 
-    status = readline.keyInYN("Deseja continuar?");
-    break;
+                const novoCandidato = inputsCandidato();
+
+                if (candidatoExiste(novoCandidato.cpf)) {
+                    console.log("Candidato já cadastrado. Tente novamente com outro CPF.");
+                } else {
+                    Candidatos.push(novoCandidato);
+                    console.log("Candidato cadastrado com sucesso!");
+                    console.table(Candidatos);
+                }
+
+                status = readline.keyInYN("Deseja continuar?");
+                break;
 
             case 2:
                 console.clear();
