@@ -111,9 +111,8 @@ const excluirDados = (): void => {
     const tipoExclusao: number = readline.questionInt("Excluir Candidato (1) ou Eleitor (2)? ");
     if (tipoExclusao === 1) {
         console.table(Candidatos);
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do candidato a ser excluído");
+        const cpfExcluir: number = readline.questionInt("Informe o CPF do candidato a ser excluído: ");
         const index = Candidatos.findIndex(c => c.cpf === cpfExcluir);
-        //caso haja algo no array candidato igual ao cpfExcluir, o splice, remove o da mesma posição 
         if (index !== -1) {
             Candidatos.splice(index, 1);
             console.log("Candidato excluído com sucesso!");
@@ -122,13 +121,21 @@ const excluirDados = (): void => {
             console.log("Candidato não encontrado.");
         }
     } else if (tipoExclusao === 2) {
-        console.table(Eleitores)
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do eleitor a ser excluído ");
+        console.table(Eleitores);
+        const cpfExcluir: number = readline.questionInt("Informe o CPF do eleitor a ser excluído: ");
         const index = Eleitores.findIndex(e => e.cpf === cpfExcluir);
         if (index !== -1) {
+            const eleitor = Eleitores[index];
+            if (eleitor.voto) {
+                const candidato = Candidatos.find(c => c.numero === eleitor.voto);
+                if (candidato) {
+                    candidato.votos -= 1; // Subtrai o voto do candidato
+                }
+            }
             Eleitores.splice(index, 1);
             console.log("Eleitor excluído com sucesso!");
             console.table(Eleitores);
+            console.table(Candidatos);
         } else {
             console.log("Eleitor não encontrado.");
         }
@@ -140,23 +147,25 @@ const atualizarDados = (): void => {
     const tipoAtualizacao: number = readline.questionInt("Atualizar Candidato (1) ou Eleitor (2)? ");
     if (tipoAtualizacao === 1) {
         console.table(Candidatos);
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do candidato a ser excluído");
-        const index = Candidatos.findIndex(c => c.cpf === cpfExcluir);
-        //caso haja algo no array candidato igual ao cpfExcluir, o splice, remove o da mesma posição 
-        if (index !== -1) {
-            Candidatos.splice(index, 1);
-            console.log("Candidato excluído com sucesso!");
+        const cpfCandidato: number = readline.questionInt("Informe o CPF do candidato a ser atualizado: ");
+        const candidato = Candidatos.find(c => c.cpf === cpfCandidato);
+        if (candidato) {
+            candidato.nome = readline.question(`Nome atual: ${candidato.nome}. Novo nome: `) || candidato.nome;
+            candidato.chapa = readline.question(`Chapa atual: ${candidato.chapa}. Nova chapa: `) || candidato.chapa;
+            candidato.numero = readline.questionInt(`Número atual: ${candidato.numero}. Novo número: `) || candidato.numero;
+            console.log("Candidato atualizado com sucesso!");
             console.table(Candidatos);
         } else {
             console.log("Candidato não encontrado.");
         }
     } else if (tipoAtualizacao === 2) {
-        console.table(Eleitores)
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do eleitor a ser excluído ");
-        const index = Eleitores.findIndex(e => e.cpf === cpfExcluir);
-        if (index !== -1) {
-            Eleitores.splice(index, 1);
-            console.log("Eleitor excluído com sucesso!");
+        console.table(Eleitores);
+        const cpfEleitor: number = readline.questionInt("Informe o CPF do eleitor a ser atualizado: ");
+        const eleitor = Eleitores.find(e => e.cpf === cpfEleitor);
+        if (eleitor) {
+            eleitor.nome = readline.question(`Nome atual: ${eleitor.nome}. Novo nome: `) || eleitor.nome;
+            eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Não"})`) || eleitor.apto;
+            console.log("Eleitor atualizado com sucesso!");
             console.table(Eleitores);
         } else {
             console.log("Eleitor não encontrado.");
