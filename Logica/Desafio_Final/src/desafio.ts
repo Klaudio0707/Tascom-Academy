@@ -164,7 +164,7 @@ const atualizarDados = (): void => {
         const eleitor = Eleitores.find(e => e.cpf === cpfEleitor);
         if (eleitor) {
             eleitor.nome = readline.question(`Nome atual: ${eleitor.nome}. Novo nome: `) || eleitor.nome;
-            eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Não"})`) || eleitor.apto;
+            eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Não"})`) as boolean || eleitor.apto;
             console.log("Eleitor atualizado com sucesso!");
             console.table(Eleitores);
         } else {
@@ -222,8 +222,17 @@ do {
                 break;
 
             case 4:
-                console.log("Exclusão de Dados");
-                excluirDados();
+                console.log("Exclusão ou Atualização de Dados");
+                let opcoes: number;
+                do {
+                    opcoes = readline.questionInt("1 - Excluir Dados\n2 - Atualizar Dados\nEscolha uma opção: ");
+                } while (opcoes < 1 || opcoes > 2);
+            
+                if (opcoes === 1) {
+                    excluirDados();
+                } else {
+                    atualizarDados();
+                }
                 status = readline.keyInYN("Deseja continuar?");
                 break;
             case 5:
