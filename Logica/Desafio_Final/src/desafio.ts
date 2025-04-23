@@ -49,7 +49,7 @@ const eleitorExiste = (cpf: number): boolean => {
 const inputsCandidato = (): Candidato => {
     const nome: string = readline.question("Digite o nome do candidato: ");
     const cpf: number = readline.questionInt("Informe o seu CPF: ");
-    const chapa: string = readline.question("Digite o nome dO partido do candidato: ");
+    const chapa: string = readline.question("Digite o nome do partido do candidato: ");
     const numero: number = readline.questionInt("Digite o numero dele: ");
     const votos: number = 0;
     let tipoCandidato: number;
@@ -58,7 +58,8 @@ const inputsCandidato = (): Candidato => {
     do {
         tipoCandidato = readline.questionInt("Tipo 1 para Prefeito e 2 para Vereador: ");
         if (tipoCandidato !== 1 && tipoCandidato !== 2) {
-            console.log("Opções invalida. Digite  1 ou 2.")
+            console.log("Opcoes invalida. Digite  1 ou 2.")
+        
         }
     } while (tipoCandidato !== 1 && tipoCandidato !== 2)
 
@@ -81,23 +82,23 @@ const realizarVoto = (): void => {
     const eleitor = Eleitores.find(eleitores => eleitores.cpf === cpfEleitor);
 
     if (!eleitor) {
-        console.log("Eleitor Não encontrado")
+        console.log("Eleitor Nao encontrado")
         return;
     }
     if (!eleitor.apto) {
-        console.log("Este eleitor não esta apto a votar");
+        console.log("Este eleitor nao esta apto a votar");
         return;
     }
     if (eleitor.dataVoto) {
-        console.log("Você já votou.");
+        console.log("Você ja votou.");
         return;
     }
     console.log("\nCandidatos: ")
     console.table(Candidatos);
-    const numeroVoto: number = readline.questionInt("Digite o número do candidato em quem deseja Votar:\n ")
+    const numeroVoto: number = readline.questionInt("Digite o numero do candidato em quem deseja Votar:\n ")
     const candidatoVotado = Candidatos.find(candidatos => candidatos.numero === numeroVoto);
     if (!candidatoVotado) {
-        console.log("Candidato não encontrado com o numero inserido");
+        console.log("Candidato nao encontrado com o numero inserido");
     } else {
         eleitor.dataVoto = new Date();
         eleitor.voto = numeroVoto;
@@ -111,18 +112,18 @@ const tratarDados = (): void => {
     const tipoExclusao: number = readline.questionInt("Excluir Candidato (1) ou Eleitor (2)? ");
     if (tipoExclusao === 1) {
         console.table(Candidatos);
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do candidato a ser excluído: ");
+        const cpfExcluir: number = readline.questionInt("Informe o CPF do candidato a ser excluido: ");
         const index = Candidatos.findIndex(c => c.cpf === cpfExcluir);
         if (index !== -1) {
             Candidatos.splice(index, 1);
-            console.log("Candidato excluído com sucesso!");
+            console.log("Candidato excluido com sucesso!");
             console.table(Candidatos);
         } else {
-            console.log("Candidato não encontrado.");
+            console.log("Candidato nao encontrado.");
         }
     } else if (tipoExclusao === 2) {
         console.table(Eleitores);
-        const cpfExcluir: number = readline.questionInt("Informe o CPF do eleitor a ser excluído: ");
+        const cpfExcluir: number = readline.questionInt("Informe o CPF do eleitor a ser excluido: ");
         const index = Eleitores.findIndex(e => e.cpf === cpfExcluir);
         if (index !== -1) {
             const eleitor = Eleitores[index];
@@ -133,14 +134,14 @@ const tratarDados = (): void => {
                 }
             }
             Eleitores.splice(index, 1);
-            console.log("Eleitor excluído com sucesso!");
+            console.log("Eleitor excluido com sucesso!");
             console.table(Eleitores);
             console.table(Candidatos);
         } else {
-            console.log("Eleitor não encontrado.");
+            console.log("Eleitor nao encontrado.");
         }
     } else {
-        console.log("Opção inválida.");
+        console.log("Opcao invalida.");
     }
 };
 const atualizarDados = (): void => {
@@ -152,44 +153,50 @@ const atualizarDados = (): void => {
         if (candidato) {
             let validacaoCPF: number = readline.questionInt(`CPF atual: ${candidato.cpf} - Informe o novo CPF:`) || candidato.cpf;
             if(candidatoExiste(validacaoCPF)) {
-                console.log("CPF já Existente no banco de dados");
+                console.log("CPF ja Existente no banco de dados");
                 return;
             }
             candidato.cpf = validacaoCPF;
             candidato.nome = readline.question(`Nome atual: ${candidato.nome}. Novo nome: `) || candidato.nome;
             candidato.chapa = readline.question(`Chapa atual: ${candidato.chapa}. Nova chapa: `) || candidato.chapa;
-            candidato.numero = readline.questionInt(`Número atual: ${candidato.numero}. Novo número: `) || candidato.numero;
+            candidato.numero = readline.questionInt(`Numero atual: ${candidato.numero}. Novo numero: `) || candidato.numero;
             console.log("Candidato atualizado com sucesso!");
             console.table(Candidatos);
         } else {
-            console.log("Candidato não encontrado.");
+            console.log("Candidato nao encontrado.");
         }
     } else if (tipoAtualizacao === 2) {
         console.table(Eleitores);
         const cpfEleitor: number = readline.questionInt("Informe o CPF do eleitor a ser atualizado: ");
         const eleitor = Eleitores.find(eleitores => eleitores.cpf === cpfEleitor);
         if (eleitor) {
-            eleitor.nome = readline.question(`Nome atual: ${eleitor.nome}. Novo nome: `) || eleitor.nome;
-            eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Não"})`) as boolean || eleitor.apto;
+                let validacaoCPF: number = readline.questionInt("CPF atual:" + eleitor.cpf + "- Informe o novo CPF: ") || eleitor.cpf;
+                if(eleitorExiste(validacaoCPF)) {
+                    console.log("CPF ja Existente no banco de dados");
+                    return;
+                }
+                eleitor.cpf = validacaoCPF;
+            eleitor.nome = readline.question("Nome atual " + eleitor.nome + "Novo nome: ") || eleitor.nome;
+            eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Nao"})`) as boolean || eleitor.apto;
             console.log("Eleitor atualizado com sucesso!");
             console.table(Eleitores);
         } else {
             console.log("Eleitor não encontrado.");
         }
     } else {
-        console.log("Opção inválida.");
+        console.log("Opcao invalida.");
     }
 };
 status = readline.keyInYN("Deseja iniciar utilizar o sistema de votacao? ");
 do {
-    console.log("\nSeja bem vindo a votação Municipal da cidade de Quixabinha ");
+    console.log("\nSeja bem vindo a votacao Municipal da cidade de Quixabinha ");
 
     if (status === true) {
         let opcoes: number;
         do {
-            opcoes = readline.questionInt("1 - Cadastrar Candidado \n2 - Cadastrar Eleitor \n3 - Realizar o voto \n4 - Exclusão ou Atualizaçao dos  Dados \n5 - Deseja Sair? \n6 - Resultado da Votação \nDigite a opção desejada: ");
+            opcoes = readline.questionInt("1 - Cadastrar Candidado \n2 - Cadastrar Eleitor \n3 - Realizar o voto \n4 - Exclusao ou Atualizacao dos  Dados \n5 - Deseja Sair? \n6 - Resultado da Votacao \nDigite a opcao desejada: ");
             if (opcoes < 1 || opcoes > 6) {
-                console.log("Opção inválida. Escolha uma opção de 1 a 6.");
+                console.log("Opcao invalida. Escolha uma opcao de 1 a 6.");
             }
         } while (opcoes < 1 || opcoes > 6);
 
@@ -199,7 +206,7 @@ do {
                 console.log("Cadastro de Candidato");
                 const novoCandidato = inputsCandidato();
                 if (candidatoExiste(novoCandidato.cpf)) {
-                    console.log("Candidato já cadastrado. Tente novamente com outro candidato.");
+                    console.log("Candidato ja cadastrado. Tente novamente com outro candidato.");
                 } else {
                     Candidatos.push(novoCandidato);
                     console.log("Candidato cadastrado com sucesso!");
@@ -212,7 +219,7 @@ do {
                 console.log("Cadastro de Eleitor");
                 const novoEleitor = inputsEleitor();
                 if (eleitorExiste(novoEleitor.cpf)) {
-                    console.log("Eleitor já cadastrado. Tente novamente com outro eleitor.");
+                    console.log("Eleitor ja cadastrado. Tente novamente com outro eleitor.");
                 } else {
                     Eleitores.push(novoEleitor);
                     console.log("Eleitor Cadastrado com sucesso!");
@@ -228,10 +235,10 @@ do {
                 break;
 
             case 4:
-                console.log("Exclusão ou Atualização de Dados");
+                console.log("Exclusao ou Atualizacao de Dados");
                 let opcoes: number;
                 do {
-                    opcoes = readline.questionInt("1 - Excluir Dados\n2 - Atualizar Dados\nEscolha uma opção: ");
+                    opcoes = readline.questionInt("1 - Excluir Dados\n2 - Atualizar Dados\nEscolha uma opcao: ");
                 } while (opcoes < 1 || opcoes > 2);
             
                 if (opcoes === 1) {
@@ -246,11 +253,11 @@ do {
                 status = false;
                 break;
             case 6:
-                console.log("Resultado da Votação");
+                console.log("Resultado da Votacao");
                 console.table(Candidatos.map(candidato => ({ Nome: candidato.nome, Votos: candidato.votos })));
                 status = readline.keyInYN("Deseja Continuar? ")
             default:
-                console.log("Opção inválida. Tente novamente.");
+                console.log("Opcao invalida. Tente novamente.");
                 break;
         }
     }
