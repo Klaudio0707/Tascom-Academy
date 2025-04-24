@@ -19,11 +19,11 @@ Certifique-se de ter instalado:
    ```bash
    git clone https://github.com/Klaudio0707/tascom-academy.git
    cd tascom-academy
-2 Instale as Dependências Execute o comando abaixo para instalar os pacotes necessários:
+2 **Instale as Dependências Execute o comando abaixo para instalar os pacotes necessários:**
    npm install
-3 Instale os Pacotes Adicionais O projeto utiliza os pacotes typescript, ts-node e @types/node.
+3 **Instale os Pacotes Adicionais O projeto utiliza os pacotes typescript, ts-node e @types/node.**
    npm install -D typescript ts-node @types/node
-4 Compile o TypeScript (Opcional) Para verificar a compilação do TypeScript:
+4 **Compile o TypeScript (Opcional) Para verificar a compilação do TypeScript:**
    npx tsc --init
-5 Execute o Arquivo TypeScript Utilize o ts-node para executar os arquivos .ts diretamente:
+5 **Execute o Arquivo TypeScript Utilize o ts-node para executar os arquivos .ts diretamente:**
   npx ts-node seu-arquivo.ts
