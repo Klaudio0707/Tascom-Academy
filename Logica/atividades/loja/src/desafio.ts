@@ -59,7 +59,7 @@ while (status) {
                 break;
             case 2:
                 console.table(produtos)
-                const indice: number | string = readlineSync.questionInt("Qual produto deseja atualizar? \nDigite o numero da sua posicao no (index) ");
+                const indice: number = readlineSync.questionInt("Qual produto deseja atualizar? \nDigite o numero da sua posicao no (index) ")as number;
                 inputsConsole();
                 substituirProduto(name, price, categoria, estoque, indice)
                 break;
@@ -69,6 +69,7 @@ while (status) {
                 filtrarProduto(filtro)
                 console.table(filtrarProduto);
             case 4:
+                const  = salarios.reduce((salario, sum) => salario + sum,); 
             default:
                 break;
         }

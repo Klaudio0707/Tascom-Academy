@@ -22,6 +22,9 @@ enum Cargos {
     Vereador = 2,
 }
 
+
+
+
 //Array de objetos
 let Candidatos: Candidato[] = [
     { nome: "moaci", cpf: 103040, chapa: "trabalhadores", numero: 10, votos: 0, candidatura: "Prefeitura" }
@@ -40,6 +43,7 @@ const candidatoExiste = (cpf: number): boolean => {
     const filtrados = Candidatos.filter(candidato => candidato.cpf === cpf);
     return filtrados[0] !== undefined;
 }
+
 const eleitorExiste = (cpf: number): boolean => {
     const filtrados = Eleitores.filter(eleitor => eleitor.cpf === cpf);
     return filtrados[0] !== undefined;
@@ -59,7 +63,7 @@ const inputsCandidato = (): Candidato => {
         tipoCandidato = readline.questionInt("Tipo 1 para Prefeito e 2 para Vereador: ");
         if (tipoCandidato !== 1 && tipoCandidato !== 2) {
             console.log("Opcoes invalida. Digite  1 ou 2.")
-        
+
         }
     } while (tipoCandidato !== 1 && tipoCandidato !== 2)
 
@@ -152,7 +156,7 @@ const atualizarDados = (): void => {
         const candidato = Candidatos.find(candidatos => candidatos.cpf === cpfCandidato);
         if (candidato) {
             let validacaoCPF: number = readline.questionInt(`CPF atual: ${candidato.cpf} - Informe o novo CPF:`) || candidato.cpf;
-            if(candidatoExiste(validacaoCPF)) {
+            if (candidatoExiste(validacaoCPF)) {
                 console.log("CPF ja Existente no banco de dados");
                 return;
             }
@@ -170,12 +174,12 @@ const atualizarDados = (): void => {
         const cpfEleitor: number = readline.questionInt("Informe o CPF do eleitor a ser atualizado: ");
         const eleitor = Eleitores.find(eleitores => eleitores.cpf === cpfEleitor);
         if (eleitor) {
-                let validacaoCPF: number = readline.questionInt("CPF atual:" + eleitor.cpf + "- Informe o novo CPF: ") || eleitor.cpf;
-                if(eleitorExiste(validacaoCPF)) {
-                    console.log("CPF ja Existente no banco de dados");
-                    return;
-                }
-                eleitor.cpf = validacaoCPF;
+            let validacaoCPF: number = readline.questionInt("CPF atual:" + eleitor.cpf + "- Informe o novo CPF: ") || eleitor.cpf;
+            if (eleitorExiste(validacaoCPF)) {
+                console.log("CPF ja Existente no banco de dados");
+                return;
+            }
+            eleitor.cpf = validacaoCPF;
             eleitor.nome = readline.question("Nome atual " + eleitor.nome + "Novo nome: ") || eleitor.nome;
             eleitor.apto = readline.keyInYN(`Eleitor apto a votar? (Atual: ${eleitor.apto ? "Sim" : "Nao"})`) as boolean || eleitor.apto;
             console.log("Eleitor atualizado com sucesso!");
@@ -240,7 +244,7 @@ do {
                 do {
                     opcoes = readline.questionInt("1 - Excluir Dados\n2 - Atualizar Dados\nEscolha uma opcao: ");
                 } while (opcoes < 1 || opcoes > 2);
-            
+
                 if (opcoes === 1) {
                     tratarDados();
                 } else {
