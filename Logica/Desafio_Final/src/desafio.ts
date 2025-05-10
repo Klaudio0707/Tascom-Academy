@@ -50,7 +50,7 @@ const eleitorExiste = (cpf: number): boolean => {
 }
 
 // funçõa reutilizavel para cadastrar o Candidato
-const inputsCandidato = (): Candidato => {
+const inputsCandidato = (): Candidato => { 
     const nome: string = readline.question("Digite o nome do candidato: ");
     const cpf: number = readline.questionInt("Informe o seu CPF: ");
     const chapa: string = readline.question("Digite o nome do partido do candidato: ");
