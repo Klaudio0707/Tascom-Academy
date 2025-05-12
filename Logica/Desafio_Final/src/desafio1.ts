@@ -10,7 +10,7 @@ Enum para status da tarefa
 import * as readline from 'readline-sync';
 
 //coloquei importancia e status como opcional.
-interface Tarefas {
+interface Tarefa {
     titulo: string,
     importancia?: string,
     mensagem: string,
@@ -34,24 +34,26 @@ enum Status {
     Concluido = 3,
 }
 
-let Tarefas: Tarefas[] = [
+let Tarefas: Tarefa[] = [
     { titulo: "", importancia: "", mensagem: "", dataCriacao: null, Status: "" }
 ]
 let Usuarios: Usuario[] = [
     { nome: "teste", apto: true, dataCadastro: null }
 ]
 
-let start: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean
-let exibicao: number =  0;
+// let start: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean
+let opcao: number = 0;
 
 const usuarioExistente = (nome: string): boolean => {
     const filtro = Usuarios.filter(usuario => usuario.nome === nome)
     return filtro[0] !== undefined
 
 }
+
+//função com saida da data e hora atual formatada.
 const formatarData = (): string => {
     let inputData: Date = new Date();
-    let dataFormatada = inputData.toLocaleString("pt-BR", {
+    let dataFormatada: string = inputData.toLocaleString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
@@ -61,68 +63,104 @@ const formatarData = (): string => {
     });
     return dataFormatada;
 }
-const cadastrarTarefa = (titulo: string, importancia: string, mensagem: string, dataCriacao: string | null, Status: string) => {
-    return Tarefas.push({ titulo, importancia, mensagem, dataCriacao, Status })
+const start = (saida?: boolean): boolean => {
+    let opcaoInicial: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean;
+    
+    return opcaoInicial;
 }
-const cadastrarUsuario = (nome: string, apto: boolean, dataCadastro: string | null) => {
-    return Usuarios.push({ nome, apto, dataCadastro })
+
+const cadastrarTarefa = (titulo: string, importancia: string, mensagem: string, Status: string): void => {
+    const dataCriacao = formatarData();
+    Tarefas.push({ titulo, importancia, mensagem, dataCriacao, Status })
+    console.log("Tarefa cadastrada com sucesso!");
 }
+const cadastrarUsuario = (nome: string, apto: boolean): void => {
+    let dataCadastro: string = formatarData();
+    Usuarios.push({ nome, apto, dataCadastro })
+    console.log("Usuário cadastrado com sucesso!");
+}
+const inputsUsuarios = (): void => {
+    let inputNome: string = readline.question("Informe seu nome ");
+    let inputApto: boolean = readline.keyInYN("Usuario ativo ? ") as boolean;
+    cadastrarUsuario(inputNome, inputApto);
+    console.table(Usuarios);
+}
+const inputsTarefas = (): void => {
+
+    let inputTitulo: string = readline.question("Informe o titulo da tarefa ");
+    let importancia: number = readline.questionInt("digite 1 para normal\ndigite 2 para atencao\ndigite 3 para emergencial ");
+    let inputImportancia = Importancia[importancia]
+    let inputMensagem: string = readline.question("informe a descricao da tarefa ");
+    opcao = readline.questionInt("Informe o 1 para tarefa pendente\n2 para em tarefa em progresso\n3 tarefa concluida\n ");
+    let inputStatus = Status[opcao];
+
+    cadastrarTarefa(inputTitulo, inputImportancia, inputMensagem, inputStatus);
+    console.table(Tarefas);
+}
+
+const edicaoTarefas = () => { };
+const exclusaoTarefas = () => { };
+const listarTarefas = () => { };
+
+start();
 
 do {
+    opcao = readline.questionInt("Deseja Cadastrar um usuario? Digite 1\nCadastrar uma tarefa? Digite 2\nDeseja sair? Digite 3\nDigite 4 para Exibir os usuarios ou tarefas cadastraos\n ")
 
-    let opcao: number | number = readline.questionInt("Deseja Cadastrar um usuario? Digite 1\nCadastrar uma tarefa? Digite 2\nDeseja sair? Digite 3\nDigite 4 para Exibir os usuarios ou tarefas cadastraos\n ")
 
-    
-    const inputsUsuarios = (): void => {
-
-        let inputNome: string = readline.question("Informe seu nome ");
-        let inputApto: boolean = readline.keyInYN("Usuario ativo ? ") as boolean;
-        let dataUsuario: string = formatarData();
-        cadastrarUsuario(inputNome, inputApto, dataUsuario);
-        console.table(Usuarios);
-    }
-     const  inputsTarefas = (): void => {
-
-         let inputTitulo: string = readline.question("Informe o titulo da tarefa ");
-         let importancia: number = readline.questionInt("digite 1 para normal\ndigite 2 para atencao\ndigite 3 para emergencial ");
-         let inputImportancia = Importancia[importancia]
-         let inputMensagem: string = readline.question("informe a descricao da tarefa ");
-         let status: number = readline.questionInt("Informe o 1 para tarefa pendente\n2 para em tarefa em progresso\n3 tarefa concluida\n ");
-         let inputStatus = Status[status]; 
-         let data: string = formatarData();
-         cadastrarTarefa(inputTitulo, inputImportancia, inputMensagem, data, inputStatus);
-         console.table(Tarefas);
-        }
- 
-         switch (opcao) {
-             case 1:
+    switch (opcao) {
+        case 1:
             inputsUsuarios();
-            start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ")as boolean
+            start()
             break;
         case 2:
             inputsTarefas();
-             start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ")as boolean
+            start()
             break;
         case 3:
-            start = false
+            opcao = readline.questionInt("Digite 1 para editar alguma tarefa\nDigite 2 para excluir uma tarefa\nDeseja Listar alguma tarefa? Digite 3 ");
+            switch (opcao) {
+                case 1:
+                    edicaoTarefas();
+                    console.table(Tarefas)
+                    break;
+                case 2:
+                    console.table(Tarefas)
+                    exclusaoTarefas();
+                    break;
+                case 3:
+                    listarTarefas();
+                    break;
+                default:
+                    console.log("Informe a opção valida desejada.\n 1 = Editar 2 = Excluir 3 = Listar")
+            }
             console.table(Tarefas);
             console.log("Até mais")
-         case 4:
-            exibicao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
-            if(exibicao == 1){ //Exibir tarefas
+            break;
+        case 4:
+            opcao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
+            if (opcao == 1) { //Exibir tarefas
                 console.table(Tarefas);
-                start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ")as boolean
-            }else if(exibicao == 2) { //Exibir Usuarios
+                start()
+                break
+            } else if (opcao == 2) { //Exibir Usuarios
                 console.log(Usuarios);
-                start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ")as boolean
-            }else{
+                start()
+                break
+            } else {
                 console.log("Informe um numero valido de 1 até o 2")
-                exibicao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
+                opcao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
+                break
             }
             break
+        case 5:
+            start(false)
+            console.log("Até mais!!")
+            break
+
         default:
             console.log("Exiba uma função ")
-            break;
+
     }
 
-} while (start)
+} while (start())
