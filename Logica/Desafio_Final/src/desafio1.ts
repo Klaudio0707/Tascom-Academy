@@ -99,7 +99,16 @@ const inputsTarefas = (): void => {
 }
 
 const edicaoTarefas = () => { };
-const exclusaoTarefas = () => { };
+const exclusaoTarefas = (titulo:string) => {
+    const findTarefa = Tarefas.findIndex(tarefas => tarefas.titulo === titulo)
+    if (findTarefa !== -1){
+        Tarefas.splice(findTarefa, 1)
+        return console.log("tarefa excluida com sucesso")
+    }
+    else{
+        console.table("Tarefa não encontrada\n"+Tarefas)
+    }
+ };
 
 const listarTarefas = (titulo:string) => {
     const findTitulo  = Tarefas.filter(titulos => titulos.titulo === titulo);
@@ -118,11 +127,11 @@ do {
     switch (opcao) {
         case 1:
             inputsUsuarios();
-            start()
+           
             break;
         case 2:
             inputsTarefas();
-            start()
+           
             break;
         case 3:
             opcao = readline.questionInt("Digite 1 para editar alguma tarefa\nDigite 2 para excluir uma tarefa\nDeseja Listar alguma tarefa? Digite 3 ");
@@ -133,11 +142,12 @@ do {
                     break;
                 case 2:
                     console.table(Tarefas)
-                    exclusaoTarefas();
+                    let titulo: string = readline.question("Informe o titulo a qual deseja excluir ")
+                    exclusaoTarefas(titulo);
                     break;
                 case 3:
-                   const titulo: string = readline.question("Informe o titulo a qual deseja pesquisar")
-                    listarTarefas(titulo);
+                    let excluirTitulo: string = readline.question("Informe o titulo a qual deseja pesquisar")
+                    listarTarefas(excluirTitulo);
                     break;
                 default:
                     console.log("Informe a opção valida desejada.\n 1 = Editar 2 = Excluir 3 = Listar")
@@ -160,7 +170,7 @@ do {
                 opcao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
                 break
             }
-            break
+            
         case 5:
             start(false)
             console.log("Até mais!!")
