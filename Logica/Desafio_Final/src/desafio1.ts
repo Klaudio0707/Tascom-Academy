@@ -44,11 +44,11 @@ let Usuarios: Usuario[] = [
 // let start: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean
 let opcao: number = 0;
 
-const usuarioExistente = (nome: string): boolean => {
-    const filtro = Usuarios.filter(usuario => usuario.nome === nome)
-    return filtro[0] !== undefined
+// const usuarioExistente = (nome: string): boolean => {
+//     const filtro = Usuarios.filter(usuario => usuario.nome === nome)
+//     return filtro[0] !== undefined
 
-}
+// }
 
 //função com saida da data e hora atual formatada.
 const formatarData = (): string => {
@@ -100,7 +100,14 @@ const inputsTarefas = (): void => {
 
 const edicaoTarefas = () => { };
 const exclusaoTarefas = () => { };
-const listarTarefas = () => { };
+
+const listarTarefas = (titulo:string) => {
+    const findTitulo  = Tarefas.filter(titulos => titulos.titulo === titulo);
+        if (findTitulo .length > 0) {
+            return console.table(findTitulo);
+        } else
+            console.log("Tarefa não encontrada")
+ };
 
 start();
 
@@ -129,7 +136,8 @@ do {
                     exclusaoTarefas();
                     break;
                 case 3:
-                    listarTarefas();
+                   const titulo: string = readline.question("Informe o titulo a qual deseja pesquisar")
+                    listarTarefas(titulo);
                     break;
                 default:
                     console.log("Informe a opção valida desejada.\n 1 = Editar 2 = Excluir 3 = Listar")
