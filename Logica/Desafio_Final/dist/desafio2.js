@@ -1,5 +1,5 @@
-const seatButtons = document.querySelectorAll<HTMLButtonElement>('.seat');
-
+"use strict";
+const seatButtons = document.querySelectorAll('.seat');
 // Adiciona o evento de clique para cada botão
 seatButtons.forEach((button) => {
     button.addEventListener('click', () => {
