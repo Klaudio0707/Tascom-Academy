@@ -1,9 +1,25 @@
-const seatButtons = document.querySelectorAll<HTMLButtonElement>('.seat');
+const buttons = document.querySelectorAll<HTMLButtonElement>(".seat");
+let counter:number = 0;
 
-// Adiciona o evento de clique para cada botão
-seatButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        // Alterna a classe 'selected' ao botão clicado
-        button.classList.toggle('reserved');
-    });
+// Obter o elemento onde o contador será exibido
+const counterDisplay = document.getElementById("out-reserved");
+
+// Adicionar um evento de clique a cada botão
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Alternar seleção
+    if (button.classList.contains("selected")) {
+      button.classList.remove("selected");
+      counter--; // Decrementar contador
+    } else {
+      button.classList.add("selected");
+      counter++; // Incrementar contador
+    }
+
+
+    // Atualizar o contador no HTML
+    if (counterDisplay) {
+      counterDisplay.textContent = `Cadeiras selecionadas: ${counter}`;
+    }
+  });
 });

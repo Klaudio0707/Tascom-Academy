@@ -47,7 +47,7 @@
             line-height: 40px;
         }
       
-        .seat.reserved {
+        .seat.selected {
             background-color: #FF5252;
             cursor: not-allowed;
         }
@@ -84,13 +84,13 @@
             <div class="cinema">
                 <!-- Exemplos de cadeiras disponíveis e reservadas -->
                 <button class="seat">A1</button>
-                <button class="seat reserved">A2</button>
+                <button class="seat">A2</button>
                 <button class="seat">A3</button>
             <button class="seat">A4</button>
-            <button class="seat reserved">A5</button>
+            <button class="seat">A5</button>
             <button class="seat">A6</button>
             <button class="seat">A7</button>
-            <button class="seat reserved">A8</button>
+            <button class="seat">A8</button>
             <button class="seat">A9</button>
             <button class="seat">A10</button>
             <!-- Repita para mais fileiras -->
@@ -98,13 +98,13 @@
          <div class="cinema">
             <!-- Exemplos de cadeiras disponíveis e reservadas -->
             <button class="seat">B1</button>
-            <button class="seat reserved">B2</button>
+            <button class="seat">B2</button>
             <button class="seat">B3</button>
             <button class="seat">B4</button>
-            <button class="seat reserved">B5</button>
+            <button class="seat">B5</button>
             <button class="seat">B6</button>
             <button class="seat">B7</button>
-            <button class="seat reserved">B8</button>
+            <button class="seat">B8</button>
             <button class="seat">B9</button>
             <button class="seat">B10</button>
             <!-- Repita para mais fileiras -->
@@ -112,13 +112,13 @@
          <div class="cinema">
             <!-- Exemplos de cadeiras disponíveis e reservadas -->
             <button class="seat">B1</button>
-            <button class="seat reserved">B2</button>
+            <button class="seat">B2</button>
             <button class="seat">B3</button>
             <button class="seat">B4</button>
-            <button class="seat reserved">B5</button>
+            <button class="seat">B5</button>
             <button class="seat">B6</button>
             <button class="seat">B7</button>
-            <button class="seat reserved">B8</button>
+            <button class="seat">B8</button>
             <button class="seat">B9</button>
             <button class="seat">B10</button>
             <!-- Repita para mais fileiras -->
@@ -126,20 +126,20 @@
          <div class="cinema">
             <!-- Exemplos de cadeiras disponíveis e reservadas -->
             <button class="seat">B1</button>
-            <button class="seat reserved">B2</button>
+            <button class="seat">B2</button>
             <button class="seat">B3</button>
             <button class="seat">B4</button>
-            <button class="seat reserved">B5</button>
+            <button class="seat">B5</button>
             <button class="seat">B6</button>
             <button class="seat">B7</button>
-            <button class="seat reserved">B8</button>
+            <button class="seat">B8</button>
             <button class="seat">B9</button>
             <button class="seat">B10</button>
             <!-- Repita para mais fileiras -->
           </div>
           <div class="legend">
-            <span><div class="legend-box available">28</div> Disponível</span>
-            <span><div class="legend-box reserved">12</div> Reservado</span>
+            <span class="legend-box available"><div class="out-vago"></div></span>
+            <span class="legend-box reserved"><div id="out-reserved"></div></span>
             </div>
       
     </main>
