@@ -63,11 +63,7 @@ const formatarData = (): string => {
     });
     return dataFormatada;
 }
-const start = (saida?: boolean): boolean => {
-    let opcaoInicial: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean;
-    
-    return opcaoInicial;
-}
+let start: boolean = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean;
 
 const cadastrarTarefa = (titulo: string, importancia: string, mensagem: string, Status: string): void => {
     const dataCriacao = formatarData();
@@ -99,42 +95,42 @@ const inputsTarefas = (): void => {
 }
 
 const edicaoTarefas = () => { };
-const exclusaoTarefas = (titulo:string) => {
+const exclusaoTarefas = (titulo: string) => {
     const findTarefa = Tarefas.findIndex(tarefas => tarefas.titulo === titulo)
-    if (findTarefa !== -1){
+    if (findTarefa !== -1) {
         Tarefas.splice(findTarefa, 1)
         return console.log("tarefa excluida com sucesso")
     }
-    else{
-        console.table("Tarefa não encontrada\n"+Tarefas)
+    else {
+        console.table("Tarefa não encontrada\n" + Tarefas)
     }
- };
+};
 
-const listarTarefas = (titulo:string) => {
-    const findTitulo  = Tarefas.filter(titulos => titulos.titulo === titulo);
-        if (findTitulo .length > 0) {
-            return console.table(findTitulo);
-        } else
-            console.log("Tarefa não encontrada")
- };
+const listarTarefas = (titulo: string) => {
+    const findTitulo = Tarefas.filter(titulos => titulos.titulo === titulo);
+    if (findTitulo.length > 0) {
+        return console.table(findTitulo);
+    } else
+        console.log("Tarefa não encontrada")
+};
 
-start();
 
 do {
-    opcao = readline.questionInt("Deseja Cadastrar um usuario? Digite 1\nCadastrar uma tarefa? Digite 2\nDeseja sair? Digite 3\nDigite 4 para Exibir os usuarios ou tarefas cadastraos\n ")
+    console.clear();
+    opcao = readline.questionInt("Cadastrar um usuario? Digite 1\nCadastrar uma tarefa? Digite 2\nEditar,Excluir ou Listar uma tarefa? Digite 3\nExibir os usuarios ou tarefas cadastraos? Digite 4\n ")
 
 
     switch (opcao) {
         case 1:
             inputsUsuarios();
-           
+
             break;
         case 2:
             inputsTarefas();
-           
+
             break;
         case 3:
-            opcao = readline.questionInt("Digite 1 para editar alguma tarefa\nDigite 2 para excluir uma tarefa\nDeseja Listar alguma tarefa? Digite 3 ");
+            opcao = readline.questionInt("Digite 1 para editar alguma tarefa\nDigite 2 para excluir uma tarefa\n Digite 3 para Listar alguma tarefa\n ");
             switch (opcao) {
                 case 1:
                     edicaoTarefas();
@@ -156,23 +152,26 @@ do {
             console.log("Até mais")
             break;
         case 4:
-            opcao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
-            if (opcao == 1) { //Exibir tarefas
+            const opcoes = (): number => {
+                let opcoes: number = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
+                return opcoes;
+            }
+            if (opcoes() == 1) { //Exibir tarefas
                 console.table(Tarefas);
-                start()
+                start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean;
                 break
-            } else if (opcao == 2) { //Exibir Usuarios
+            } else if (opcoes() == 2) { //Exibir Usuarios
                 console.log(Usuarios);
-                start()
+                start = readline.keyInYN("Deseja iniciar o sistema de tarefas? ") as boolean;
                 break
             } else {
                 console.log("Informe um numero valido de 1 até o 2")
                 opcao = readline.questionInt("Deseja ver as tarefas salvas ? Digite 1\n Deseja ver os usuarios? Digite 2\n")
                 break
             }
-            
+
         case 5:
-            start(false)
+            start = false;
             console.log("Até mais!!")
             break
 
@@ -181,4 +180,4 @@ do {
 
     }
 
-} while (start())
+} while (start)
