@@ -1,48 +1,35 @@
-// Pega os elementos do DOM com tipagem correta
-const form = document.getElementById('form') as HTMLFormElement;
-const formSection = document.getElementById('exibir') as HTMLElement;
-const cinemaSection = document.getElementById('ocultar') as HTMLElement;
-const userNameDisplay = document.querySelector('header p#ocultar a.perfil') as HTMLAnchorElement;
-const selectedCountDisplay = document.getElementById('out-reserved') as HTMLElement;
-const seats = Array.from(document.querySelectorAll('.seat')) as HTMLButtonElement[];
 
-// Guarda as cadeiras selecionadas
-let selectedSeatsCount = 0;
+import * as readline from 'readline-sync';
 
-// Inicialmente, mostra só o form e esconde as cadeiras
-formSection.style.display = 'block';
-cinemaSection.style.display = 'none';
+interface Reserva {
+    nome: String,
+    cadeira: Number,
+    dataReserva: Date | null,
+    Status: String
+}
 
-// Listener para submissão do form
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+interface Filme {
+    nome: String,
+    descricao: String,
+    categoria: String
+}
+let cadeiras = [
+    "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10",
+    "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10",
+    "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10",
+    "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10",
+    "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10",
+    "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
+    "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10",
+    "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10",
+    "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10",
+    "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10",
+    "K1", "K2", "K3", "K4", "K5", "K6", "K7", "K8", "K9", "K10",
+    "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10"
+];
 
-    const formData = new FormData(form);
-    const nome = formData.get('nome') as string;
+let status = readline.keyInSelect(cadeiras, "Deseja reservar uma cadeira? ")
 
-    if (!nome || nome.trim() === '') {
-        alert('Por favor, informe seu nome');
-        return;
-    }
+console.table(status);
 
-    // Mostra o nome do usuário no header
-    userNameDisplay.textContent = nome;
 
-    // Esconde o form e mostra as cadeiras
-    formSection.style.display = 'none';
-    cinemaSection.style.display = 'flex';
-});
-
-// Listener para clicar nas cadeiras
-seats.forEach(seat => {
-    seat.addEventListener('click', () => {
-        if (seat.classList.contains('selected')) return;
-
-        seat.classList.add('selected');
-        seat.style.cursor = 'not-allowed';
-        seat.disabled = true;
-
-        selectedSeatsCount++;
-        selectedCountDisplay.textContent = `Cadeiras selecionadas: ${selectedSeatsCount}`;
-    });
-});
