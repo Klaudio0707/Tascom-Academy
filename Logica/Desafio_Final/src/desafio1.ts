@@ -1,9 +1,10 @@
 // desafio 1 
 
 /*
-[] Adicionar Tarefa
-[] Titulo, Descrição, Status, Data de criação em cada taarefa
-Enum para status da tarefa
+[*] Adicionar Tarefa
+[*] Titulo, Descrição, Status, Data de criação em cada taarefa
+[*] Enum para status da tarefa
+[*] Pesquisa de tarefas e  
 
 */
 
@@ -11,16 +12,16 @@ import * as readline from 'readline-sync';
 
 //coloquei importancia e status como opcional.
 interface Tarefa {
-    titulo: string,
-    importancia?: string,
-    mensagem: string,
-    dataCriacao: string | null,
+    titulo: String,
+    importancia?: String,
+    mensagem: String,
+    dataCriacao: String | null,
     Status?: String,
 }
 interface Usuario {
-    nome: string,
-    apto: boolean,
-    dataCadastro: string | null,
+    nome: String,
+    apto: Boolean,
+    dataCadastro: String | null,
 }
 
 enum Importancia {
