@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio 2 - Sistema de Reservas de Cinema</title>
+    <title>Sistema de Reservas de Cinema</title>
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         header {
             margin: 20px;
@@ -21,19 +23,34 @@
             align-items: center;
             gap: 20px;
         }
-         article {
-            max-width: 800px;
-            text-align: center;
+        #ocultar {
+            display: none;
         }
-        .buttons {
+        #exibir {
+            display: block;
+        }
+        .form-cadastro {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-cadastro form {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+        }
+        .cinema-container {
+            display: flex;
+            flex-direction: column;
+            display: none;
+            align-items: center;
         }
         .cinema {
             display: grid;
             grid-template-columns: repeat(10, 40px);
             gap: 10px;
             justify-content: center;
+            margin: 10px 0;
         }
         .seat {
             width: 40px;
@@ -46,7 +63,6 @@
             text-align: center;
             line-height: 40px;
         }
-      
         .seat.selected {
             background-color: #FF5252;
             cursor: not-allowed;
@@ -54,7 +70,7 @@
         .legend {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 40px;
             margin-top: 20px;
         }
         .legend span {
@@ -73,305 +89,46 @@
         .reserved {
             background-color: #FF5252;
         }
+        .counter-display {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Sistema de Reserva de Cinema</h1>
+        <p id="ocultar">Usuário(a): <a class="perfil" href="#">Cláudio</a></p>
     </header>
-<<<<<<< HEAD
-        <main style="display: flex; flex: 1; flex-direction: column;">
-          <article style="margin-bottom: 10vh; text-align: center;">
-              <button class="btn-Compra" >Compra de Ingressos</button>
-              <button class="btn-Cadeiras">Consultar Cadeiras Disponiveis</button>
-          </article>  
-            <article style="display: flex; flex-direction: row; position: relative; justify-content:center">
-                
-              <table style=" text-align: center; justify-content: center;">
-                
-                <tr>
-                    <td>A</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                    <td>A1</td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                    <td>C3</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                    <td>D4</td>
-                </tr>
-                <tr>
-                    <td>F</td>
-                    <td>F5</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                    <td>F4</td>
-                </tr>
-                <tr>
-                    <td>G</td>
-                    <td>G6</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                    <td>G4</td>
-                </tr>
-                <tr>
-                    <td>H</td>
-                    <td>H7</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                    <td>H4</td>
-                </tr>
-                <tr>
-                    <td>I</td>
-                    <td>I8</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                    <td>I4</td>
-                </tr>
-                <tr>
-                    <td>J</td>
-                    <td>J9</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                    <td>J4</td>
-                </tr>
-                <tr>
-                    <td>L</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                    <td>L10</td>
-                </tr>
-                  
-              </table>
-                </article>
-                <article>
-                <div>
-                    <img src="" alt="Tela de cinema">
-                </div>
-                    <ol>
-                        <li>A1</li>
-                        <li>H4</li>
-                    </ol>
-                </article>
-        </main>    
-    <footer>
-
-    </footer>
-    <script src="./src/desafio2.ts"></script>
-=======
     <main>
-   
+        <section class="form-cadastro" id="exibir">
+            <form id="form">
+                <input type="text"name="nome" placeholder="Informe seu Nome" required>
+                <input type="date"  placeholder="Informe sua data de nascimento" required>
+                <input type="submit" value="Cadastrar">
+            </form>
+        </section>
+        <section class="cinema-container"id="ocultar">
             <div class="cinema">
-                <!-- Exemplos de cadeiras disponíveis e reservadas -->
-                <button class="seat">A1</button>
-                <button class="seat">A2</button>
-                <button class="seat">A3</button>
-            <button class="seat">A4</button>
-            <button class="seat">A5</button>
-            <button class="seat">A6</button>
-            <button class="seat">A7</button>
-            <button class="seat">A8</button>
-            <button class="seat">A9</button>
-            <button class="seat">A10</button>
-            <!-- Repita para mais fileiras -->
-         </div>
-         <div class="cinema">
-            <!-- Exemplos de cadeiras disponíveis e reservadas -->
-            <button class="seat">B1</button>
-            <button class="seat">B2</button>
-            <button class="seat">B3</button>
-            <button class="seat">B4</button>
-            <button class="seat">B5</button>
-            <button class="seat">B6</button>
-            <button class="seat">B7</button>
-            <button class="seat">B8</button>
-            <button class="seat">B9</button>
-            <button class="seat">B10</button>
-            <!-- Repita para mais fileiras -->
-         </div>
-         <div class="cinema">
-            <!-- Exemplos de cadeiras disponíveis e reservadas -->
-            <button class="seat">B1</button>
-            <button class="seat">B2</button>
-            <button class="seat">B3</button>
-            <button class="seat">B4</button>
-            <button class="seat">B5</button>
-            <button class="seat">B6</button>
-            <button class="seat">B7</button>
-            <button class="seat">B8</button>
-            <button class="seat">B9</button>
-            <button class="seat">B10</button>
-            <!-- Repita para mais fileiras -->
-         </div>
-         <div class="cinema">
-            <!-- Exemplos de cadeiras disponíveis e reservadas -->
-            <button class="seat">B1</button>
-            <button class="seat">B2</button>
-            <button class="seat">B3</button>
-            <button class="seat">B4</button>
-            <button class="seat">B5</button>
-            <button class="seat">B6</button>
-            <button class="seat">B7</button>
-            <button class="seat">B8</button>
-            <button class="seat">B9</button>
-            <button class="seat">B10</button>
-            <!-- Repita para mais fileiras -->
-          </div>
-          <div class="legend">
-            <span class="legend-box available"><div class="out-vago"></div></span>
-            <span class="legend-box reserved"><div id="out-reserved"></div></span>
+                <!-- Cadeiras disponíveis -->
+                <button class="seat" data-seat="A1">A1</button>
+                <button class="seat" data-seat="A2">A2</button>
+                <button class="seat" data-seat="A3">A3</button>
+                <button class="seat" data-seat="A4">A4</button>
+                <button class="seat" data-seat="A5">A5</button>
+                <button class="seat" data-seat="A6">A6</button>
+                <button class="seat" data-seat="A7">A7</button>
+                <button class="seat" data-seat="A8">A8</button>
+                <button class="seat" data-seat="A9">A9</button>
+                <button class="seat" data-seat="A10">A10</button>
             </div>
-      
+            <div class="legend">
+                <span><div class="legend-box available"></div> Disponível</span>
+                <span><div class="legend-box reserved"></div> Selecionado</span>
+            </div>
+            <div id="out-reserved" class="counter-display">Cadeiras selecionadas: 0</div>
+        </section>
     </main>
-        <script src="dist/desafio2.js"></script>
->>>>>>> d937c765580aae525b68c567a57560921593b23e
+    <script src="dist/desafio2.js"></script>
 </body>
 </html>
