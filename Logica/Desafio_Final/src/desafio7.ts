@@ -2,12 +2,12 @@ import * as readline from 'readline-sync';
 
 //interface para tipagem dos dois arrays de objetos
 interface Candidato {
-    nome: string,
+    nome: String,
     cpf: number,
-    chapa: string,
-    numero: number,
+    chapa: String,
+    numero: Number,
     votos: number
-    candidatura: string
+    candidatura: String
 }
 interface Eleitor {
     nome: string,
