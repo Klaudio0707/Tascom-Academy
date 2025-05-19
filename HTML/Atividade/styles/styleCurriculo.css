@@ -1,46 +1,58 @@
 body{
-    margin: 0;
+    margin: 1vh;
     padding: 0;
-    background-color: #f9f9f9;
-}
-img{
-    height: 130px;
-    width: 120px;
-    border-radius: 10px;
+    background-color: #bfdef3;
 }
 .container_Header{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
 }
 .header_Titulo{
-    margin: 5px;
-    color:cadetblue;
-    font-size: 30px;
-    cursor: pointer;    
+    margin-bottom: 2px;
+    font-size: 5vh;
 }
-.header_Nome{
-    margin: 15px;
-    color: teal;
+.header_Habilidades{
+    margin: 10px 0 0 0 ;
+    padding: 0;
 }
-.header_Sobre{
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
-    margin: 15px;
-    justify-content:space-between;
+.header_Contato{
+     margin: 3px 0 0 0; /*acima direita abaixo  esquerda*/
+    padding: 0;
 }
-nav{
-    margin: 10px;
-    height: 100px;
-    width: 400px;
+.header_email{
+    text-decoration: none;
+    font-size: 3vh;
+    font-weight: bold;
+    color: #3252b9;
+}
+.header_redes{
+    margin: 3px 0 0 0 ;
+    padding: 0;
 }
 
-.header_Habilidades{
-    display: flex;
-    text-align: center;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 50px;
+.header_linkedIn{
+    text-decoration: none;
+    margin-right: 10px;
+    color: #1f45ec;
+    font-weight: bold;
 }
+#icon_Linkedin{
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+#icon_Github{
+    margin-left: 5px;
+    width: 25px;
+    height: 25px;
+}
+.header_Github{
+    text-decoration: none;
+    margin-left: 10px;
+    color: #000000;
+    font-weight: bold;
+    border-color: #0998f7 ;
+}
+
+/* Inicio do main */
