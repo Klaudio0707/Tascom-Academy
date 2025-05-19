@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+img{
+    height: 130px;
+    width: 120px;
+    border-radius: 10px;
+}
+.container_Header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.header_Titulo{
+    margin: 5px;
+    color:cadetblue;
+    font-size: 30px;
+    cursor: pointer;    
+}
+.header_Nome{
+    margin: 15px;
+    color: teal;
+}
+.header_Sobre{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin: 15px;
+    justify-content:space-between;
+}
+nav{
+    margin: 10px;
+    height: 100px;
+    width: 400px;
+}
+
+.header_Habilidades{
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+}
