@@ -83,25 +83,25 @@ h2:hover{
     padding: 7px; 
     background-color: #fff; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
+   
 }
 .objetivo_Titulo{
-margin-bottom: 3px
+    margin-bottom: 3px
 }
 .objetivo_Objetivo{
-       width: 100%;
+    width: 100%;
     font-size: 0.9rem; 
     line-height: 1.1; 
     text-align: left; 
 }
 .container_aside{
-display: flex;
+    display: flex;
     justify-content: space-between;
     gap: 0;
 }
 .habilidades_titulo{
     margin-top: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 .habilidade_habilidades{ 
     font-size: 0.8rem; 
@@ -113,27 +113,27 @@ display: flex;
 }
 
 .container_Habilidades{
+    width: 35%;
     max-width: 800px; 
     text-align: left; 
     margin: 20px auto;
     padding: 10px; 
     background-color: #fff; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 .perfil_Titulo{
     margin-top: 4px;
     margin-bottom: 5px;
 }
 .container_Perfil{
-    width: 40%; 
+    width: 35%; 
     max-width: 800px; 
     text-align: left; 
     margin: 20px auto;
     padding: 10px; 
     background-color: #fff; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
 }
 
 .perfil_Perfil{
@@ -152,7 +152,7 @@ display: flex;
     padding: 7px; 
     background-color: #fff; 
     border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    
 }
 .formacao_Titulo{
     margin-bottom: 3px
