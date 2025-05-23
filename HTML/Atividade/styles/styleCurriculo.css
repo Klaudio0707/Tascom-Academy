@@ -224,3 +224,26 @@ pre:hover {
     display: flex;
     justify-content: space-between;
 }
+.container_Cursos{
+    display: flex;
+    flex-direction: column;
+    /* max-width: 70%; */
+    margin-bottom: 50px;
+    justify-items: center;
+}
+#a_cursos{
+    text-decoration: none;
+    color: #0400ff;
+}
+#img_Click{
+width: 25px;
+height: 20px;
+
+}
+#img_Click:hover{
+    color: #0400ff;
+    scale: 1.5;
+}
+.detalhes_Curso{
+width: 50%;
+}
