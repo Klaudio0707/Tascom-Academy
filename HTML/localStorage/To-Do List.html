@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <script defer src="index.js"></script>
+  <title>To-Do List</title>
+</head>
+
+<body>
+  <header>
+    <h1>To-Do List</h1>
+  </header>
+  <section>
+    <p>Contador:<span class="outContador">0</span></p>
+    <form id="task-form">
+      <div class="input-container">
+        <label for="title">Título:</label>
+        <input id="title" name="title" type="text" required />
+      </div>
+      <div class="input-container">
+        <label for="description">Descrição:</label>
+        <input id="description" name="description" type="text" required />
+      </div>
+      <button type="submit">Adicionar</button>
+    </form>
+  </section>
+  <section>
+    <h3>Lista de tarefas</h3>
+    <ul id="list"></ul>
+  </section>
+</body>
+
+</html>

@@ -14,7 +14,7 @@ body {
     margin: 0 auto 0;
     text-align: left;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 10px;
     font-family: 'Times New Roman', Times, serif;
 
@@ -265,7 +265,12 @@ pre:hover {
     height: 20px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
+#foto_perfil{
+    width: 100px;
+    height: 120px;
+    border-radius: 8px;
+    margin-left: 10px;
+}
 #img_Click:hover {
     color: #0400ff;
     scale: 1.5;
