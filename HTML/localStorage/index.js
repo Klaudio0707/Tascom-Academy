@@ -2,11 +2,15 @@
 const taskForm = document.getElementById("task-form");
 const taskList = document.getElementById("list");
 const outContador = document.getElementById("outContador");
+const outConcluidas = document.getElementById("outConcluidas");
 // Função para salvar tarefas no LocalStorage
 let incrementador = 0;
+let concluidas = 0;
 const count=  () => {
   incrementador = loadTasks().length;
+
   outContador.innerHTML = `<pre>Total de tarefas: ${incrementador}</pre>`;
+  outConcluidas.innerHTML = `<pre>Concluidas: ${concluidas}</pre>`
 }
 const saveTasks = (tasks) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -29,6 +33,7 @@ const createTaskElement = (title, description,dateCreate) => {
     <h3 class="title">${title}</h3>
     <p class="description">${description}</p>
     <p>Data: ${dateCreate}</p>
+    
   `;
 
   const taskActions = document.createElement("div");
@@ -54,7 +59,16 @@ const createTaskElement = (title, description,dateCreate) => {
   editButton.addEventListener("click", () => {
     const newTitle = prompt("Editar título:", title);
     const newDescription = prompt("Editar descrição:", description);
-
+    const atividadeConcluida = confirm("A está concluida?")
+    if (atividadeConcluida == true) {
+      concluidas++;
+      console.log(concluidas, "+")
+      count();
+    }else{
+      concluidas--;
+      console.log(concluidas, "-")
+      count();
+    }
     if (newTitle && newDescription) {
       const tasks = loadTasks();
       const taskIndex = tasks.findIndex(
@@ -122,11 +136,11 @@ taskForm.addEventListener("submit", (event) => {
   const description = taskForm.description.value.trim();
   if (title && description) {
     const tasks = loadTasks();
-    tasks.push({ title, description, dateCreate });
+    tasks.push({ title, description, dateCreate, concluidas });
     saveTasks(tasks);
     incrementador++;
     count();
-    const taskElement = createTaskElement(title, description,dateCreate);
+    const taskElement = createTaskElement(title, description,dateCreate, concluidas);
     taskList.appendChild(taskElement);
     
     taskForm.reset();
