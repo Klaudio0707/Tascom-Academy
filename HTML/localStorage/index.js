@@ -4,6 +4,10 @@ const taskList = document.getElementById("list");
 const outContador = document.getElementById("outContador");
 // Função para salvar tarefas no LocalStorage
 let incrementador = 0;
+const count=  () => {
+  incrementador = loadTasks().length;
+  outContador.innerHTML = `<pre>Total de tarefas: ${incrementador}</pre>`;
+}
 const saveTasks = (tasks) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
@@ -14,22 +18,21 @@ const loadTasks = () => {
 };
 
 // Cria um elemento de tarefa
-const createTaskElement = (title, description) => {
+const createTaskElement = (title, description,dateCreate) => {
   const taskItem = document.createElement("li");
   taskItem.classList.add("task-item");
 
   const taskContent = document.createElement("div");
   taskContent.classList.add("card");
-  outContador.innerHTML = `${incrementador}`;
   const taskDetails = document.createElement("div");
   taskDetails.innerHTML = `
     <h3 class="title">${title}</h3>
     <p class="description">${description}</p>
+    <p>Data: ${dateCreate}</p>
   `;
 
   const taskActions = document.createElement("div");
   taskActions.classList.add("actions");
-
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Excluir";
   deleteButton.classList.add("delete-button");
@@ -39,6 +42,8 @@ const createTaskElement = (title, description) => {
       (task) => task.title !== title || task.description !== description
     );
     saveTasks(tasks);
+    incrementador--;
+    count();
     taskItem.remove();
   });
 
@@ -88,8 +93,8 @@ const renderTasks = () => {
   const tasks = loadTasks();
   taskList.innerHTML = ""; // Limpa a lista para evitar duplicação
 
-  tasks.forEach(({ title, description }) => {
-    const taskElement = createTaskElement(title, description);
+  tasks.forEach(({ title, description, dateCreate }) => {
+    const taskElement = createTaskElement(title, description, dateCreate);
     taskList.appendChild(taskElement);
   });
 };
@@ -107,21 +112,23 @@ const formatarData = () => {
   return dataFormatada;
 }
 
+let dateCreate = formatarData();
+count();
 // Evento de envio do formulário
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const title = taskForm.title.value.trim();
   const description = taskForm.description.value.trim();
-
   if (title && description) {
     const tasks = loadTasks();
-    tasks.push({ title, description });
+    tasks.push({ title, description, dateCreate });
     saveTasks(tasks);
-    incrementador +=1;
-    const taskElement = createTaskElement(title, description);
+    incrementador++;
+    count();
+    const taskElement = createTaskElement(title, description,dateCreate);
     taskList.appendChild(taskElement);
-
+    
     taskForm.reset();
   } else {
     alert("Por favor, preencha todos os campos!");

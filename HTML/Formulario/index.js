@@ -6,7 +6,7 @@ const outTarefas = document.getElementById("outInput");
 let incrementador = 0;
 
 // Atualiza o contador no DOM
-function updateCounter() {
+const  updateCounter = () => {
   outTarefas.innerHTML = `<pre>Total de tarefas: ${incrementador}</pre>`;
 }
 
