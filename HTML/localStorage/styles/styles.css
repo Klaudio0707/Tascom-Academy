@@ -91,3 +91,18 @@ body {
     flex-direction: column;
     gap: 12px;
   }
+  .status_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .tarefas_concluidas,.total_p{
+    background-color: #0090fe;
+    padding: 15px;
+    text-align: center;
+    justify-content: center;
+    color: azure;
+    border-radius: 10px;
+
+  }

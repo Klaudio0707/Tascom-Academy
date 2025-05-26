@@ -9,8 +9,8 @@ let concluidas = 0;
 const count=  () => {
   incrementador = loadTasks().length;
 
-  outContador.innerHTML = `<pre>Total de tarefas: ${incrementador}</pre>`;
-  outConcluidas.innerHTML = `<pre>Concluidas: ${concluidas}</pre>`
+  outContador.innerHTML = `${incrementador}`;
+  outConcluidas.innerHTML = `${concluidas}`
 }
 const saveTasks = (tasks) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
