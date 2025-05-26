@@ -12,6 +12,9 @@ const count=  () => {
   outContador.innerHTML = `${incrementador}`;
   outConcluidas.innerHTML = `${concluidas}`
 }
+const btnStatus = () => {
+     
+}
 const saveTasks = (tasks) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
@@ -22,7 +25,7 @@ const loadTasks = () => {
 };
 
 // Cria um elemento de tarefa
-const createTaskElement = (title, description,dateCreate) => {
+const createTaskElement = (title, description,dateCreate, concluidas) => {
   const taskItem = document.createElement("li");
   taskItem.classList.add("task-item");
 
@@ -33,7 +36,7 @@ const createTaskElement = (title, description,dateCreate) => {
     <h3 class="title">${title}</h3>
     <p class="description">${description}</p>
     <p>Data: ${dateCreate}</p>
-    
+    <button class="btn_${concluidas ? "concluida": "nConcluida"}">${concluidas? "Concluída": "Não Concluída"}</button>
   `;
 
   const taskActions = document.createElement("div");
@@ -60,15 +63,14 @@ const createTaskElement = (title, description,dateCreate) => {
     const newTitle = prompt("Editar título:", title);
     const newDescription = prompt("Editar descrição:", description);
     const atividadeConcluida = confirm("A está concluida?")
-    if (atividadeConcluida == true) {
+    if (atividadeConcluida) {
       concluidas++;
       console.log(concluidas, "+")
-      count();
-    }else{
+    }else if (concluidas > 0){
       concluidas--;
       console.log(concluidas, "-")
-      count();
     }
+    count();
     if (newTitle && newDescription) {
       const tasks = loadTasks();
       const taskIndex = tasks.findIndex(
@@ -78,6 +80,7 @@ const createTaskElement = (title, description,dateCreate) => {
       if (taskIndex !== -1) {
         tasks[taskIndex].title = newTitle.trim();
         tasks[taskIndex].description = newDescription.trim();
+        tasks[taskIndex].concluida = atividadeConcluida;
         saveTasks(tasks);
       }
 
@@ -86,6 +89,8 @@ const createTaskElement = (title, description,dateCreate) => {
       taskDetails.innerHTML = `
         <h3 class="title">${title}</h3>
         <p class="description">${description}</p>
+         <p>Data: ${dateCreate}</p>
+        <button class="btn_${concluidas ? "concluida" : "nConcluida"}">${concluidas? "Concluída": "Não Concluída"}</button>
       `;
     } else {
       alert("Edição cancelada ou campos inválidos!");
@@ -107,8 +112,8 @@ const renderTasks = () => {
   const tasks = loadTasks();
   taskList.innerHTML = ""; // Limpa a lista para evitar duplicação
 
-  tasks.forEach(({ title, description, dateCreate }) => {
-    const taskElement = createTaskElement(title, description, dateCreate);
+  tasks.forEach(({ title, description, dateCreate, concluidas }) => {
+    const taskElement = createTaskElement(title, description, dateCreate, concluidas);
     taskList.appendChild(taskElement);
   });
 };

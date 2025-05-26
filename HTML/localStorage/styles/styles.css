@@ -35,8 +35,31 @@ body {
     border-radius: 8px;
     border: 1px solid #ccc;
     align-self: flex-end;
+    cursor: pointer;
   }
-  
+  .btn_concluida{
+     color: #f9f9f9;
+    background-color: #00fe22;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  .btn_nConcluida{
+      color: #f9f9f9;
+    background-color: #a59a07;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+
   h1,
   h3 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -72,6 +95,7 @@ body {
         border-radius: 8px;
         border: 1px solid #ccc;
         align-self: flex-end;
+        cursor: pointer;
       }
       /* .edit-button {
         color: #f9f9f9;
