@@ -4,7 +4,6 @@ import PrimeiroComponente from './components/PrimeiroComponente.jsx'
 import Saudacao from './components/Saudacao.tsx'
 
 import App from './App.tsx'
-
 createRoot(document.getElementById('tudo')!).render(
   <StrictMode>
     <App />
