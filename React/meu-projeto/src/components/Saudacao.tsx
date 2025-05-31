@@ -3,6 +3,7 @@
 type Props = {
     name: string;
     idade: number;
+    
 }
 
 export default function Saudacao({name, idade}: Props) {
