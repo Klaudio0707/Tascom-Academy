@@ -5,6 +5,7 @@ import Saudacao from './components/Saudacao.tsx'
 import Container from './components/Container.tsx'
 
 import App from './App.tsx'
+import Button from './Button/index.tsx'
 createRoot(document.getElementById('tudo')!).render(
   
   <StrictMode>
@@ -13,5 +14,6 @@ createRoot(document.getElementById('tudo')!).render(
     <Container color="#f5f">
     <Saudacao name="Cláudio" idade={28}/>
     </Container>
+    <Button>Button</Button>
   </StrictMode>,
 )
