@@ -1,84 +1,15 @@
-body {
-  width: 50vw;
-  margin: 0 auto;
-  padding-top: 50px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+body{
+    width: 50vh;
+    margin: 0 auto;
+    padding-top: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.input-container {
-  input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  label {
-    font-size: small;
-  }
-}
+.input-container{
+    input{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-button {
-  color: #f9f9f9;
-  background-color: #0090fe;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  align-self: flex-end;
-}
-
-h1,
-h3 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.card {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  .title {
-    font-weight: bold;
-  }
-  .description {
-    font-style: italic;
-  }
-  .actions {
-    display: flex;
-    flex-direction: column;
-    > * {
-      width: 100%;
     }
-    .delete-button {
-      color: #f9f9f9;
-      background-color: #ef5350;
-      padding: 12px 20px;
-      box-sizing: border-box;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      align-self: flex-end;
-    }
-  }
-}
-
-#list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }

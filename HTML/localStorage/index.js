@@ -36,8 +36,8 @@ const createTaskElement = (title, description, dateCreate, isConcluida) => {
     <button class="btn_${isConcluida ? "concluida" : "nConcluida"}">${isConcluida ? "Concluída" : "Não Concluída"}</button>
   `;
 
-  const toggleStatusButton = taskDetails.querySelector("button");
-  toggleStatusButton.addEventListener("click", () => {
+  const statusButton = taskDetails.querySelector("button");
+  statusButton.addEventListener("click", () => {
     const tasks = loadTasks();
     const taskIndex = tasks.findIndex(task => task.title === title && task.description === description);
 
