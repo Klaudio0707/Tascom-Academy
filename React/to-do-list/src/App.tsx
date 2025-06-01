@@ -1,16 +1,23 @@
-import './App.css'
-import Atividades from './Components/Atividades'
-import Form from './Components/Form'
+import React, { useState, type JSX } from 'react';
+import Form from './Components/Form';
+import Atividades from './Components/Atividades';
 
-function App() {
-
-
-  return (
-    <>
-    <Form/>
-    <Atividades/>
-    </>
-  )
+interface Atividade {
+  title: string;
+  description: string;
 }
 
-export default App
+export default function App(): JSX.Element {
+  const [atividades, setAtividades] = useState<Atividade[]>([]);
+
+  const handleAddAtividade = (novaAtividade: Atividade) => {
+    setAtividades((prev) => [...prev, novaAtividade]);
+  };
+
+  return (
+    <div>
+      <Form onAddAtividade={handleAddAtividade} />
+      <Atividades atividades={atividades} />
+    </div>
+  );
+}
