@@ -1,0 +1,11 @@
+.header_Container{
+     padding: 10px;
+    margin-bottom: 30px;
+}
+.titulo{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: blue;
+    font-weight: bold;
+
+}

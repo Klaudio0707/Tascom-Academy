@@ -1,0 +1,11 @@
+.hora{
+    padding: 30px;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+.hora:hover{
+background-color: blueviolet;
+}
