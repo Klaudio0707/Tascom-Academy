@@ -10,10 +10,10 @@
 input{
     text-align: center;
     box-sizing:border-box;
-    margin: 8px 100px 10px 100px;
+    margin: 8px 200px 10px 200px;
     border-radius: 10px;
     border: 1px solid #ccc;
-    align-content: center;    
+    align-content: center; 
 }
 .input_Title{
     padding: 10px 20px;
