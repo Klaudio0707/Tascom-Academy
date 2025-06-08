@@ -1,34 +1,16 @@
-import { type JSX } from 'react';
+import Atividades from './Components/Atividades/Atividades';
 import Form from './Components/Form/Form';
-interface Atividade {
-  title: string;
-  description: string;
-}
+import Status from './Components/Status/Status';
 
-export default function App(): JSX.Element {
-  const atividades: Atividade[] = [];
+export default function App() {  
 
-  const handleAddAtividade = (atividade: Atividade) => {
-    atividades.push(atividade);
-
-    console.log(atividades);
-  };
-
+ 
   return (
     <div>
-      <h1>Lista de Atividades</h1>
-      <Form onAddAtividade={handleAddAtividade} />
-      
-      {atividades.length > 0 ? (
-            atividades.map((atividades, index) => (
-              <li key={index}>
-                <h3>{atividades.title}</h3>
-                <p>{atividades.description}</p>
-              </li>
-            ))
-          ) : (
-            <p>Nenhuma atividade adicionada.</p>
-          )}
+      <Form />  
+      <Status/>
+      <Atividades/>
     </div>
   );
-}
+
+};

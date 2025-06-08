@@ -1,32 +1,18 @@
-import  {  type JSX } from 'react';
+import styles from "./styles.module.css";
 
-interface Atividade {
-    title: string;
-    description: string;
-  }
-  
-  type AtividadesProps = {
-    atividades: Atividade[
 
-    ];
-  };
-  
-  export default function Atividades({ atividades }: AtividadesProps): JSX.Element {
-    return (
-      <div>
-        <h2>Atividades</h2>
-        <ul>
-          {atividades.length > 0 ? (
-            atividades.map((atividade, index) => (
-              <li key={index}>
-                <h3>{atividade.title}</h3>
-                <p>{atividade.description}</p>
-              </li>
-            ))
-          ) : (
-            <p>Nenhuma atividade adicionada.</p>
-          )}
-        </ul>
-      </div>
-    );
-  }
+export default function Atividades() {
+  return (
+    <div className={styles.container}>
+      <section className={styles.atividades_Container}>
+        <h4 className={styles.titulo_Atividades}>Título</h4>
+        <p className={styles.description}>descrição</p>
+        <span className={styles.date}>20/05/2025 14:35</span>
+      </section>
+      <article className={styles.container_btn}>
+        <button className={styles.btn_Editar}>Editar</button>
+        <button className={styles.btn_Concluir}>Concluir</button>
+      </article>
+    </div>
+  );
+}
