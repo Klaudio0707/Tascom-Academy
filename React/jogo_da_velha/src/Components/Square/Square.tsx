@@ -1,17 +1,13 @@
-import React from "react"
+import React, {useState} from "react"
 
-type ButtonProps = React.ComponentProps<'button'> & {
-    value: string;
-}
-
-const Square = ({value, ...props}: ButtonProps) =>{
-    const handleCLick=() => {
-       alert("Clicked"!)
-    }
+  
+  
+  const Square = ( {value} ) =>{
+  
 
   return (
     <>
-    <button className="square" onClick={handleCLick} >{value}</button>
+    <button className="square">{value}</button>
     </>
   )
 }
