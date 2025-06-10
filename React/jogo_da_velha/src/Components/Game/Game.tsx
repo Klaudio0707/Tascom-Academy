@@ -21,8 +21,9 @@ function Game() {
   const moves = history.map((_squares, move) => (
     <li key={move}>
       <button className={styles.btn_Game} onClick={() => jumpTo(move)}>
-        {move > 0 ? `Go to move #${move}` : "Go to game start"}
+        {move > 0 ? `Inicie o Movimento #${move}` : "Inicie o Jogo"}
       </button>
+      
     </li>
   ));
 
@@ -32,7 +33,7 @@ function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className={styles.game_info}>
-        <ol>{moves}</ol>
+        <ol className={styles.game_Moves}>{moves}</ol>
       </div>
     </div>
   );
