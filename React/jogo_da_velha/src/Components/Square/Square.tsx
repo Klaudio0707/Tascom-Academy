@@ -1,15 +1,16 @@
-import React, {useState} from "react"
+import React from "react";
 
-  
-  
-  const Square = ( {value} ) =>{
-  
-
-  return (
-    <>
-    <button className="square">{value}</button>
-    </>
-  )
+interface SquareProps {
+  value: string | null; 
+  onSquareClick: () => void; 
 }
 
-export default Square
+const Square: React.FC<SquareProps> = ({ value, onSquareClick }) => {
+  return (
+    <button className="square" onClick={onSquareClick}>
+      {value}
+    </button>
+  );
+};
+
+export default Square;
