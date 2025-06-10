@@ -1,0 +1,19 @@
+.container_Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+
+  background-color: #2b2929; 
+  color: white; 
+  font-size: 35px; 
+  font-weight: bold; 
+  border-bottom: 2px solid #3b3a3a; 
+  margin-bottom: 150px;
+}
+.titulo_Header{
+     position: relative;
+}
+.titulo_Header:hover{
+    color: #4caf50;
+}

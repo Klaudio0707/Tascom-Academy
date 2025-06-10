@@ -1,0 +1,8 @@
+.btn_Reset{
+    padding: 30px;
+    font-size: 25px;
+    border-radius: 20px;
+    background-color: #0c3c7a;
+    border-color: transparent;
+     cursor: pointer;
+}

@@ -1,14 +1,14 @@
-
-import Board from './Components/Board/Board'
 import Game from './Components/Game/Game'
 import './App.css'
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
 
 function App() {
   return (
     <>
-     
-      <Board/>
-      <Game/>
+         <Header />
+         <Game/>
+         <Footer/>
     </>
   )
 }

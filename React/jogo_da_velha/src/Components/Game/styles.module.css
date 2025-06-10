@@ -1,0 +1,14 @@
+/* botao de movimentações */
+.game{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.btn_Game{
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.btn_Game:hover{
+    background-color: blueviolet;
+}
