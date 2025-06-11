@@ -1,0 +1,12 @@
+.btn_Reset{
+    padding: 10px 40px;
+    font-size: 25px;
+    border-radius: 20px;
+    background-color: #006bf7;
+    border-color: transparent;
+     cursor: pointer;
+     color: rgb(255, 255, 255);
+}
+.btn_Reset:hover{
+    background-color: #0e4b9b;
+}

@@ -1,0 +1,33 @@
+.titulo_status{
+    color: #bd94f3;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+}
+
+.board_row {
+  display: flex; 
+  justify-content: center; 
+  margin-bottom: 10px; 
+}
+
+.square {
+  margin: 5px;
+  background-color: #050404;
+  border-radius: 5px;
+  border: 2px solid #333; 
+  color: #fff;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.square:hover {
+  background-color: #333; 
+}
