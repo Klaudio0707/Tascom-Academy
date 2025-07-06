@@ -14,7 +14,7 @@ class Personagem {
     }
 }
 
-const dados = () => {
+const criarPersonagem = () => {
 
     let nome: string = readline.question("informe o seu nome");
     let nivel:number = readline.questionInt("informe o seu nivel")
@@ -24,4 +24,4 @@ const dados = () => {
 }
 
 
-dados();
+criarPersonagem();
