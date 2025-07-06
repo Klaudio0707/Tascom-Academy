@@ -1,16 +1,16 @@
 import * as readline from 'readline-sync';
 class Personagem {
     nome: string;
-    nivel: number|string;
-    pontosdeVida: number;
+    nivel: number;
+    pontosDeVida: number;
     
-    public constructor(name:string, level:number|string,scoreLife:number){
+    public constructor(name:string, level:number,scoreLife:number){
         this.nome = name;
         this.nivel = level;
-        this.pontosdeVida = scoreLife; 
+        this.pontosDeVida = scoreLife; 
     }
     public exibirStatus():string{
-        return `Personagem: ${this.nome}, possui: ${this.nivel}Pontos, e ${this.pontosdeVida} pontos de Vida`
+        return `Personagem: ${this.nome}, possui: ${this.nivel}Pontos, e ${this.pontosDeVida} pontos de Vida`
     }
 }
 
