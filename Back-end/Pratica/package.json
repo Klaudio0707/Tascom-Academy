@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "ts-node src/Pratica.ts"
+    "start": "ts-node src/CatalogoDeProdutos.ts"
   },
   "keywords": [],
   "author": "",
