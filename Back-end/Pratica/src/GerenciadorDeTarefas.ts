@@ -3,7 +3,7 @@ class Tarefa {
     id: number;
     nome: string;
     descricao: string;
-    concluida: boolean; // Removido o '?'
+    concluida: boolean;
 
     // O construtor agora é público e define 'concluida' como false por padrão
     public constructor(id: number, nome: string, descricao: string) {
@@ -17,6 +17,8 @@ class Tarefa {
     public concluir(): void { // 'void' significa que o método não retorna valor
         this.concluida = true;
     }
+
+
 }
 
 class GerenciadorDeTarefas {
