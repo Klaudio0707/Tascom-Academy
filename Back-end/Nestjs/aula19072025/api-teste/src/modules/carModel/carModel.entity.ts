@@ -1,4 +1,5 @@
-import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
+import {  BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { brand } from "../brand/brand.entity";
 
 
 @Table({
@@ -27,5 +28,15 @@ export class carModel extends Model<carModel> {
             type: DataType.INTEGER,
             allowNull: false
         })
-        preco: number        
+        preco: number
+        
+        
+        @ForeignKey(() => brand)
+        @Column({
+            type:DataType.UUID,
+            allowNull: false
+        })
+        brand_id: string
+       @BelongsTo(() => brand)
+       brand: brand
     }

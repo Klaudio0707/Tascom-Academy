@@ -17,5 +17,7 @@ export class brand extends Model<brand> {
         allowNull: false
     })
     marca: string
+
+    
             
 }

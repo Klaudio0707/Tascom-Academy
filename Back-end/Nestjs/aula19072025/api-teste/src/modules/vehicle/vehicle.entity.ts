@@ -1,4 +1,6 @@
-import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
+import {  AllowNull, BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { User } from "../user/user.entity";
+import { carModel } from "../carModel/carModel.entity";
 
 
 @Table({
@@ -33,5 +35,23 @@ export class vehicle extends Model<vehicle> {
             type: DataType.INTEGER,
             allowNull: false
         })
-        quilometragem: number       
+        quilometragem: number
+        
+        @ForeignKey(() => User)
+        @Column({
+            type:DataType.UUID,
+            allowNull: false
+        })
+       user_id: string
+       @BelongsTo(() => User)
+       user: User
+
+       @ForeignKey(() => carModel)
+       @Column({
+           type:DataType.UUID,
+           allowNull: false
+       })
+       model_id: string
+      @BelongsTo(() => carModel)
+      carMode: carModel
     }

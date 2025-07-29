@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {
-        create(user: object) {
-            return {
-                message: 'Usuario criado com sucesso',
-                date: user,
-            }
-        }
-        getUser() {
-            return `Seu nome é carlos`
-                
-            
-        }
+    constructor(
+        private readonly userModel: typeof User
+    ) {}
+
+      async create(user: object) {
+            return await this.userModel.create(user)
     }
+}
 
