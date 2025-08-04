@@ -1,4 +1,4 @@
-import {  AllowNull, BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "../user/user.entity";
 import { carModel } from "../carModel/carModel.entity";
 

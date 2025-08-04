@@ -19,7 +19,7 @@ export class carModel extends Model<carModel> {
         model: string
         
         @Column({
-            type: DataType.STRING,
+            type: DataType.INTEGER,
             allowNull: false
         })
         ano: number
