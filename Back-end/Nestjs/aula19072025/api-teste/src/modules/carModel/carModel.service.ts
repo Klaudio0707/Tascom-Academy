@@ -1,20 +1,22 @@
 import { Injectable } from '@nestjs/common';
+import { carModel } from './carModel.entity';
+import { CreateCarModelDto } from './dtos/create-carModel.dtos';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class CarModelService {
-    create(cars: object) {
-        return {
-            message: 'Carro salvo com sucesso',
-            name: cars,
-            model: cars,
-            color: cars,
-            price: cars,
-        }
+    constructor(
+        @InjectModel(carModel)
+    private readonly car: typeof carModel
+) {}
+   async create(car: CreateCarModelDto) {
+        const createdCarModel = await this.car.create(car)
+
+        return createdCarModel
     }
-    getUser() {
-        return(
-            "Carro Preto, Siena, Valor R$ 15.000,00"
-        )
+  
+    async findAll(){
+        return await this.car.findAll()
             
         
     }

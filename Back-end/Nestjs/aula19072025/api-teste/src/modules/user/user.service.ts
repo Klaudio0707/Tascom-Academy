@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { CreateUserDto } from './dtos/create-user.dtos';
 import { InjectModel } from '@nestjs/sequelize';
-import { UpdateCarModelDto } from '../carModel/dtos/update-carModel.dtos';
 import { UpdateUserDto } from './dtos/update-user.dtos';
 
 @Injectable()
