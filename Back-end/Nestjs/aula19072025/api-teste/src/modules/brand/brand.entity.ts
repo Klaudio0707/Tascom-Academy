@@ -1,4 +1,5 @@
 import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { CreateBrandDto } from "./dtos/create-brand.tdos";
 
 
 
@@ -6,7 +7,7 @@ import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-
     tableName: "brand",
     timestamps:true
 })
-export class brand extends Model<brand> {
+export class brand extends Model<brand, CreateBrandDto> {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)
