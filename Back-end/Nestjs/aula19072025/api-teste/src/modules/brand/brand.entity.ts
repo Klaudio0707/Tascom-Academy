@@ -7,7 +7,7 @@ import { CreateBrandDto } from "./dtos/create-brand.tdos";
     tableName: "brand",
     timestamps:true
 })
-export class brand extends Model<brand, CreateBrandDto> {
+export class Brand extends Model<Brand, CreateBrandDto> {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)

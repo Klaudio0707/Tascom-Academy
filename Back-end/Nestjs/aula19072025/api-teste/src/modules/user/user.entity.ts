@@ -1,11 +1,11 @@
-import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { CreateUserDto } from "./dtos/create-user.dtos";
 
 
 @Table({
-        tableName: "user",
-        timestamps:true
-    })
+    tableName: "user",
+    timestamps: true
+})
 export class User extends Model<User, CreateUserDto> {
     @PrimaryKey
     @Default(DataType.UUIDV4)
@@ -24,20 +24,20 @@ export class User extends Model<User, CreateUserDto> {
         allowNull: false
     })
     username: string
-    
+
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     password: string
-    
+
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
     email: string
 
-    
+
     @Default(true)
     @Column({
         type: DataType.BOOLEAN,

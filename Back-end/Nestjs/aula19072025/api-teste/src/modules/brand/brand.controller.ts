@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dtos/create-brand.tdos';
+import { UpdateBrandDto } from './dtos/update-brand.dtos';
 
 
 @Controller('brand')
@@ -17,6 +18,14 @@ export class BrandController {
     @Get()
     async findAll() {
         return await this.brandService.findAll()
+    }
+    @Patch(':id')
+    async update(
+        @Param('id') id: string,
+        @Body() brand: UpdateBrandDto
+    ) {
+
+        return await this.brandService.update(id, brand);
     }
 
 }

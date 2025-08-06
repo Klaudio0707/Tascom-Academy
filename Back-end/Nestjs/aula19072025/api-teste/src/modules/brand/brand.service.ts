@@ -1,21 +1,56 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { brand } from './brand.entity';
-import { CreateBrandDto } from './dtos/create-brand.tdos';
+import { Brand } from './brand.entity';
+import { CreateBrandDto } from '../brand/dtos/create-brand.tdos'; // Corrigido o nome
+import { UpdateBrandDto } from '../brand/dtos/update-brand.dtos';
 
 @Injectable()
 export class BrandService {
     constructor(
-        @InjectModel(brand)
-        private readonly brandModel: typeof brand
-    ){}
-   
-    async create(brand: CreateBrandDto){
-        const createdBrand = await this.brandModel.create(brand)
-        return createdBrand
+        @InjectModel(Brand)
+        private readonly brandModel: typeof Brand
+    ) { }
+
+    async create(brand: CreateBrandDto) {
+        // Valida se a marca já existe antes de criar
+        await this.checkIfBrandExists(brand.marca);
+
+        const createdBrand = await this.brandModel.create(brand);
+        return createdBrand;
     }
 
-    async findAll(){
-        return await this.brandModel.findAll()
+    async update(id: string, brand: UpdateBrandDto) {
+        // Encontre a marca atual para comparar com o novo nome
+        const currentBrand = await this.brandModel.findByPk(id);
+        if (!currentBrand) {
+            throw new HttpException('Marca não encontrada', HttpStatus.NOT_FOUND);
+        }
+
+        // Valida se o novo nome de marca já existe em outro registro
+        if (brand.marca && brand.marca !== currentBrand.marca) {
+            await this.checkIfBrandExists(brand.marca);
+        }
+
+        const [numberOfAffectedRows, [updatedBrand]] = await this.brandModel.update(
+            { ...brand },
+            { where: { brand_id: id }, returning: true },
+        );
+
+        return updatedBrand;
+    }
+
+    async findAll() {
+        return await this.brandModel.findAll();
+    }
+
+    // Método de validação com nome mais descritivo
+    private async checkIfBrandExists(marca: string) {
+        const brandAlreadyExists = await this.brandModel.findOne({
+            where: { marca: marca },
+        });
+
+        if (brandAlreadyExists) {
+            throw new HttpException("Marca já existente", HttpStatus.BAD_REQUEST);
+        }
     }
 }

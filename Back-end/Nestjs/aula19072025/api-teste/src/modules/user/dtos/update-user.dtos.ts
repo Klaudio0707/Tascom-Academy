@@ -5,8 +5,6 @@ import { CreateUserDto } from "./create-user.dtos";
 
 export class UpdateUserDto extends PartialType(CreateUserDto){
   cpf?: string
-
-
 }
 
 // export class UpdateUserDto{
