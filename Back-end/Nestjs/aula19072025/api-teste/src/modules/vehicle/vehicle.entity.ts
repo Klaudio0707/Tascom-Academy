@@ -1,13 +1,13 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "../user/user.entity";
-import { carModel } from "../carModel/carModel.entity";
+import { CarModel } from "../carModel/carModel.entity";
 
 
 @Table({
         tableName: "vehicle",
         timestamps:true
     })
-export class vehicle extends Model<vehicle> {
+export class Vehicle extends Model<Vehicle> {
         @PrimaryKey
         @Default(DataType.UUIDV4)
         @Column(DataType.UUID)
@@ -46,12 +46,12 @@ export class vehicle extends Model<vehicle> {
        @BelongsTo(() => User)
        user: User
 
-       @ForeignKey(() => carModel)
+       @ForeignKey(() => CarModel)
        @Column({
            type:DataType.UUID,
            allowNull: false
        })
        model_id: string
-      @BelongsTo(() => carModel)
-      carMode: carModel
+      @BelongsTo(() => CarModel)
+      carMode: CarModel
     }

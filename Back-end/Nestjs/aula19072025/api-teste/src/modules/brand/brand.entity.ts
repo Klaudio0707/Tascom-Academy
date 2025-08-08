@@ -11,7 +11,7 @@ export class Brand extends Model<Brand, CreateBrandDto> {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)
-    public brand_id: string
+   declare brand_id: string
 
     @Column({
         type: DataType.STRING,

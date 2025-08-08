@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { carModel } from './carModel.entity';
+import { CarModel } from './carModel.entity';
 import { CreateCarModelDto } from './dtos/create-carModel.dto';
 import { UpdateCarModelDto } from './dtos/update-carModel.dto';
 
 @Injectable()
 export class CarModelService {
     constructor(
-        @InjectModel(carModel)
-    private readonly car: typeof carModel
+        @InjectModel(CarModel)
+    private readonly car: typeof CarModel
 ) {}
    async create(car: CreateCarModelDto) {
         const createdCarModel = await this.car.create(car)
@@ -26,10 +26,7 @@ export class CarModelService {
             throw new HttpException('Modelo não encontrada', HttpStatus.NOT_FOUND);
         }
 
-        // Valida se o novo nome de marca já existe em outro registro
-        if (car.preco && car.preco !== currentCar.preco) {
-            await this.checkIfCarModelExists(car.preco);
-        }
+       
 
         const [numberOfAffectedRows, [updatedCarModel]] = await this.car.update(
             { ...car },
@@ -38,9 +35,9 @@ export class CarModelService {
 
         return updatedCarModel;
     }
-    private async checkIfCarModelExists(preco: number) {
+    private async checkIfCarModelExists(id: number) {
         const carAlreadyExists = await this.car.findOne({
-            where: { preco: preco },
+            where: {  model_id: id },
         });
         if (carAlreadyExists) {
             throw new HttpException("Marca já existente", HttpStatus.BAD_REQUEST);

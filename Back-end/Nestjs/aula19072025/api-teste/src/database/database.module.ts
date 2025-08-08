@@ -2,9 +2,9 @@ import { Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import * as dotenv from "dotenv"
 import { Brand } from "src/modules/brand/brand.entity";
-import { carModel } from "src/modules/carModel/carModel.entity";
+import { CarModel } from "src/modules/carModel/carModel.entity";
 import { User } from "src/modules/user/user.entity";
-import { vehicle } from "src/modules/vehicle/vehicle.entity";
+import { Vehicle } from "src/modules/vehicle/vehicle.entity";
 
 dotenv.config()
 @Module({
@@ -17,7 +17,7 @@ dotenv.config()
             password: process.env.DB_PASS,
             database: process.env.DB_NAME,
             models: [
-                User,Brand,carModel,vehicle
+                User,Brand,CarModel,Vehicle
             ],
             logging: true,
             autoLoadModels: true

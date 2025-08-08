@@ -7,29 +7,29 @@ import { CreateCarModelDto } from "./dtos/create-carModel.dto";
         tableName: "carModel",
         timestamps:true
     })
-export class carModel extends Model<carModel, CreateCarModelDto> {
+export class CarModel extends Model<CarModel, CreateCarModelDto> {
         @PrimaryKey
         @Default(DataType.UUIDV4)
         @Column(DataType.UUID)
-        public model_id: string
+       declare model_id: string
     
         @Column({
             type: DataType.STRING,
             allowNull: false
         })
-        model: string
+       declare model: string
         
         @Column({
             type: DataType.INTEGER,
             allowNull: false
         })
-        ano: number
+        declare ano: number
         
         @Column({
             type: DataType.INTEGER,
             allowNull: false
         })
-        preco: number
+        declare preco: number
         
         
         @ForeignKey(() => Brand)
@@ -37,7 +37,7 @@ export class carModel extends Model<carModel, CreateCarModelDto> {
             type:DataType.UUID,
             allowNull: false
         })
-        brand_id: string
+        declare brand_id: string
        @BelongsTo(() => Brand)
-       brand: Brand
+       declare brand: Brand
     }
