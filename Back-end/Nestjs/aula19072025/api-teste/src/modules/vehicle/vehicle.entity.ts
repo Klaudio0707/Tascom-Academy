@@ -52,6 +52,7 @@ export class Vehicle extends Model<Vehicle> {
         allowNull: false
     })
     declare model_id: string
+    
     @BelongsTo(() => CarModel)
-    declare carMode: CarModel
+    declare carModel: CarModel
 }
