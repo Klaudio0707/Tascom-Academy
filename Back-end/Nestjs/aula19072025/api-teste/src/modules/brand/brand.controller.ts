@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { BrandService } from './brand.service';
-import { CreateBrandDto } from './dtos/create-brand.tdos';
-import { UpdateBrandDto } from './dtos/update-brand.dtos';
+import { CreateBrandDto } from './dtos/create-brand.tdo';
+import { UpdateBrandDto } from './dtos/update-brand.dto';
 
 
 @Controller('brand')

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CarModelService } from './carModel.service';
-import { CreateCarModelDto } from './dtos/create-carModel.dtos';
+import { CreateCarModelDto } from './dtos/create-carModel.dto';
 
 @Controller('carModel')
 export class CarModelController {

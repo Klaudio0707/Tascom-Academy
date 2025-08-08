@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Brand } from './brand.entity';
-import { CreateBrandDto } from '../brand/dtos/create-brand.tdos'; // Corrigido o nome
-import { UpdateBrandDto } from '../brand/dtos/update-brand.dtos';
+import { CreateBrandDto } from './dtos/create-brand.tdo'; // Corrigido o nome
+import { UpdateBrandDto } from './dtos/update-brand.dto';
 
 @Injectable()
 export class BrandService {

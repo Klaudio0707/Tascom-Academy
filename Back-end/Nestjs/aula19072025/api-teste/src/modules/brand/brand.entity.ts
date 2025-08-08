@@ -1,11 +1,11 @@
-import {  Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { CreateBrandDto } from "./dtos/create-brand.tdos";
+import { Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { CreateBrandDto } from "./dtos/create-brand.tdo";
 
 
 
 @Table({
     tableName: "brand",
-    timestamps:true
+    timestamps: true
 })
 export class Brand extends Model<Brand, CreateBrandDto> {
     @PrimaryKey
@@ -15,10 +15,8 @@ export class Brand extends Model<Brand, CreateBrandDto> {
 
     @Column({
         type: DataType.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     })
-    marca: string
-
-    
-            
+   declare marca: string  
 }

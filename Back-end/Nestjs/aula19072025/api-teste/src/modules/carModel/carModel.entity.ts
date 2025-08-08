@@ -1,6 +1,6 @@
-import {  BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { brand } from "../brand/brand.entity";
-import { CreateCarModelDto } from "./dtos/create-carModel.dtos";
+import { BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Brand } from "../brand/brand.entity";
+import { CreateCarModelDto } from "./dtos/create-carModel.dto";
 
 
 @Table({
@@ -32,12 +32,12 @@ export class carModel extends Model<carModel, CreateCarModelDto> {
         preco: number
         
         
-        @ForeignKey(() => brand)
+        @ForeignKey(() => Brand)
         @Column({
             type:DataType.UUID,
             allowNull: false
         })
         brand_id: string
-       @BelongsTo(() => brand)
-       brand: brand
+       @BelongsTo(() => Brand)
+       brand: Brand
     }
