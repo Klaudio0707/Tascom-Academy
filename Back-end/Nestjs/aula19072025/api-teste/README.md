@@ -27,8 +27,8 @@
 
 # 💻 API [Api - Concessionária de Carros]
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/seu-usuario/seu-repo/main.yml?style=for-the-badge)
-![License](https://img.shields.io/github/license/seu-usuario/seu-repo?style=for-the-badge)
+![Build Status](https://img.shields.io/github/actions/workflow/status/klaudio0707/https://github.com/Klaudio0707/Tascom-Academy/main.yml?style=for-the-badge)
+![License](https://img.shields.io/github/license/klaudio0707/https://github.com/Klaudio0707/Tascom-Academy?style=for-the-badge)
 
 Uma API RESTful robusta construída com NestJS para gerenciar os carros da concessionárias de veículos, por nome de usuários, marcas de veiculos, modelos, precos e etc...
 
