@@ -25,74 +25,150 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+# 💻 API [Api - Concessionária de Carros]
 
-```bash
-$ npm install
-```
+![Build Status](https://img.shields.io/github/actions/workflow/status/seu-usuario/seu-repo/main.yml?style=for-the-badge)
+![License](https://img.shields.io/github/license/seu-usuario/seu-repo?style=for-the-badge)
 
-## Compile and run the project
+Uma API RESTful robusta construída com NestJS para gerenciar os carros da concessionárias de veículos, por nome de usuários, marcas de veiculos, modelos, precos e etc...
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 📖 Tabela de Conteúdos
 
-# production mode
-$ npm run start:prod
-```
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Começando](#-começando)
+  - [Pré-requisitos](#-pré-requisitos)
+  - [Instalação](#-instalação)
+- [Executando a Aplicação](#-executando-a-aplicação)
+- [Estrutura dos Endpoints](#-estrutura-dos-endpoints)
+- [Licença](#-licença)
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## 🌟 Sobre o Projeto
 
-# e2e tests
-$ npm run test:e2e
+Este projeto é uma API backend desenvolvida com o framework **NestJS**, utilizando **TypeScript**. Ele segue as melhores práticas de desenvolvimento, como arquitetura modular, injeção de dependência e o uso de um ORM (Sequelize) para interação com o banco de dados PostgreSQL.
 
-# test coverage
-$ npm run test:cov
-```
+O objetivo é fornecer um conjunto de endpoints seguros e eficientes para [explique o problema que o projeto resolve].
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## ✨ Tecnologias Utilizadas
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+As principais tecnologias e bibliotecas usadas neste projeto são:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- **[NestJS](https://nestjs.com/)**: Um framework Node.js progressivo para construir aplicações backend eficientes e escaláveis.
+- **[TypeScript](https://www.typescriptlang.org/)**: Um superset do JavaScript que adiciona tipagem estática.
+- **[Sequelize](https://sequelize.org/)**: Um ORM (Object-Relational Mapper) para Node.js, facilitando a comunicação com bancos de dados SQL.
+- **[PostgreSQL](https://www.postgresql.org/)**: Um poderoso sistema de banco de dados relacional de código aberto.
+- **[JWT (JSON Web Tokens)](https://jwt.io/)**: Para autenticação e autorização baseada em tokens.
+- **[Class-Validator](https://github.com/typestack/class-validator)** e **[Class-Transformer](https://github.com/typestack/class-transformer)**: Para validação e transformação de dados de requisições.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🚀 Começando
 
-Check out a few resources that may come in handy when working with NestJS:
+Siga estas instruções para configurar e rodar o projeto em seu ambiente de desenvolvimento local.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### ✅ Pré-requisitos
 
-## Support
+Antes de começar, você precisará ter as seguintes ferramentas instaladas em sua máquina:
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/) (versão 18.x ou superior)
+- [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+- [Docker](https://www.docker.com/) (Recomendado, para rodar o banco de dados PostgreSQL facilmente)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### ⚙️ Instalação
 
-## Stay in touch
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/Klaudio0707/Tascom-Academy](https://github.com/Klaudio0707/Tascom-Academy)
+    ```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+2.  **Navegue até o diretório do projeto:**
+    ```bash
+    cd Back-end/Nestjs/aula19072025/api-teste
+    ```
 
-## License
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+    *ou, se estiver usando Yarn:*
+    ```bash
+    yarn install
+    ```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+4.  **Configure as Variáveis de Ambiente:**
+    O projeto utiliza um arquivo `.env` para gerenciar as variáveis de ambiente. Há um arquivo de exemplo que deve ser copiado:
+    ```bash
+    cp .env.example .env
+    ```
+    Após copiar, abra o arquivo `.env` e preencha as variáveis com suas informações locais (especialmente as credenciais do banco de dados e o segredo JWT).
+
+
+5.  **Execute as Migrations (se aplicável):**
+    Se o projeto usar migrations do Sequelize para criar as tabelas, rode o comando:
+    ```bash
+    npm run sequelize:migrate
+    ```
+
+---
+
+## ▶️ Executando a Aplicação
+
+Com tudo configurado, você pode iniciar a aplicação com os seguintes comandos:
+
+-   **Modo de Desenvolvimento (com hot-reload):**
+    ```bash
+    npm run start:dev
+    ```
+    A aplicação estará disponível em `http://localhost:3000` (ou na porta que você definiu no `.env`).
+
+-   **Build de Produção:**
+    ```bash
+    # Primeiro, crie a build otimizada
+    npm run build
+
+    # Depois, inicie o servidor de produção
+    npm run start:prod
+    ```
+
+-   **Executando Testes:**
+    ```bash
+    # Rodar testes unitários
+    npm run test
+
+    # Rodar testes e2e
+    npm run test:e2e
+    ```
+
+---
+
+## 📡 Estrutura dos Endpoints
+
+A API está organizada em torno de recursos RESTful. Abaixo estão alguns dos principais endpoints disponíveis:
+
+| Método HTTP | Endpoint           | Descrição                                 |
+| :---------- | :----------------- | :---------------------------------------- |
+| `POST`      | `/auth/login`      | Autentica um usuário e retorna um token JWT. |
+| `GET`       | `/brands`          | Lista todas as marcas de veículos.        |
+| `POST`      | `/brands`          | Cria uma nova marca.                      |
+| `GET`       | `/car-models/allCar`| Lista todos os modelos de carros.         |
+| `POST`      | `/car-models`      | Cria um novo modelo de carro.             |
+| `PATCH`     | `/car-models/:id`  | Atualiza um modelo de carro existente.    |
+| `POST`      | `/vehicles`        | Cadastra um novo veículo para um usuário. |
+| `GET`       | `/users`           | Lista todos os usuários.                  |
+
+*Para uma documentação completa e interativa dos endpoints, inicie a aplicação e acesse a rota do Swagger UI em `http://localhost:3000/api`.*
+
+---
+
+## 📜 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+---
+Feito com ❤️ por [Cláudio](https://github.com/Klaudio0707)
