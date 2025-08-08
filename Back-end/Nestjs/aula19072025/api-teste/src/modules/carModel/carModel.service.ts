@@ -35,12 +35,12 @@ export class CarModelService {
 
         return updatedCarModel;
     }
-    private async checkIfCarModelExists(id: number) {
-        const carAlreadyExists = await this.car.findOne({
-            where: {  model_id: id },
-        });
-        if (carAlreadyExists) {
-            throw new HttpException("Marca já existente", HttpStatus.BAD_REQUEST);
-        }
-}
+//     private async checkIfCarModelExists(id: number) {
+//         const carAlreadyExists = await this.car.findOne({
+//             where: {  model_id: id },
+//         });
+//         if (carAlreadyExists) {
+//             throw new HttpException("Marca já existente", HttpStatus.BAD_REQUEST);
+//         }
+// }
 }
