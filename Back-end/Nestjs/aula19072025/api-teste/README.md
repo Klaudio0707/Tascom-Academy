@@ -27,8 +27,8 @@
 
 # 💻 API [Api - Concessionária de Carros]
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/klaudio0707/https://github.com/Klaudio0707/Tascom-Academy/main.yml?style=for-the-badge)
-![License](https://img.shields.io/github/license/klaudio0707/https://github.com/Klaudio0707/Tascom-Academy?style=for-the-badge)
+![Build Status](https://img.shields.io/github/actions/workflow/status/Klaudio0707/Tascom-Academy/main.yml?style=for-the-badge)
+![License](https://img.shields.io/github/license/Klaudio0707/Tascom-Academy?style=for-the-badge)
 
 Uma API RESTful robusta construída com NestJS para gerenciar os carros da concessionárias de veículos, por nome de usuários, marcas de veiculos, modelos, precos e etc...
 
@@ -84,7 +84,7 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/Klaudio0707/Tascom-Academy](https://github.com/Klaudio0707/Tascom-Academy)
+    git clone https://github.com/Klaudio0707/Tascom-Academy.git(https://github.com/Klaudio0707/Tascom-Academy)
     ```
 
 2.  **Navegue até o diretório do projeto:**
