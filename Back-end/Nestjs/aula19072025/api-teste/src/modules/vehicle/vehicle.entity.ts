@@ -1,13 +1,14 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "../user/user.entity";
 import { CarModel } from "../carModel/carModel.entity";
+import { CreateVehicleDto } from "./dtos/create-vehicle.dto";
 
 
 @Table({
     tableName: "vehicle",
     timestamps: true
 })
-export class Vehicle extends Model<Vehicle> {
+export class Vehicle extends Model<Vehicle, CreateVehicleDto>{
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)
