@@ -4,6 +4,7 @@ import { UserModule } from './modules/user/user.module';
 import { VehicleModule } from './modules/vehicle/vehicle.module';
 import { BrandModule } from './modules/brand/brand.module';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { DatabaseModule } from './database/database.module';
     CarModelModule,
     BrandModule,
     VehicleModule,
-    DatabaseModule],
+    DatabaseModule,
+    AuthModule],
   providers: [],
   controllers: [],
 })

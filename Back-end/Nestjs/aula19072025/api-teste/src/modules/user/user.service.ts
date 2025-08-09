@@ -44,6 +44,14 @@ if(emailAlreadyExists){
 }
         return true
     }
+        async findByUSerName(username: string){
+            const user = await this.userModel.findOne({
+                where: { username: username},
+            });
+            return user;
+        }
+
+
 }
 
 //DATA TRANSFER OBJECT
