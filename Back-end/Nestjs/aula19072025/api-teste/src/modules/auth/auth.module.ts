@@ -3,11 +3,14 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import * as dotenv from "dotenv"
+import { SequelizeModule } from '@nestjs/sequelize';
+import { User } from '../user/user.entity';
 
 
 dotenv.config()
 @Module({
   imports: [
+    SequelizeModule.forFeature([User]),
     JwtModule.registerAsync({
       global: true,
       imports: [],
@@ -17,7 +20,6 @@ dotenv.config()
             expiresIn: process.env.JWT_EXPIRATION_TIME
           }
       }),
-      inject: [],
     })
   ],
   controllers: [AuthController],

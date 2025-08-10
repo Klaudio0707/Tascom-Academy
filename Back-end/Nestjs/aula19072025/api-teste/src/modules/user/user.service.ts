@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './user.entity';
+import {  bcryptHashSync} from 'bcrypt'
+
 
 @Injectable()
 export class UserService {
@@ -14,7 +16,9 @@ export class UserService {
       async create(user: CreateUserDto) {
         await this.validateEmail(user.email);
         
-        const createdUser = await this.userModel.create(user)
+        const createdUser = await this.userModel.create({...user, password: bcryptHashSync(user.password, 10),
+
+         })
 
             return createdUser
     }
