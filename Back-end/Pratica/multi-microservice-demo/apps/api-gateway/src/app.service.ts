@@ -7,6 +7,7 @@ export class AppService {
   constructor(
     @Inject('MATH_SERVICE') private readonly mathClient: ClientProxy,
     @Inject('STRING_SERVICE') private readonly stringClient: ClientProxy,
+    @Inject('DATE_SERVICE') private readonly dateClient: ClientProxy,
   ) {}
 
 
@@ -43,5 +44,8 @@ export class AppService {
     return await firstValueFrom(
       this.stringClient.send({ cmd: 'capitalize' }, text),
     );
+  }
+  async getToday(): Promise<string> {
+    return await firstValueFrom(this.dateClient.send({ cmd: 'getDate' }, {}));
   }
 }

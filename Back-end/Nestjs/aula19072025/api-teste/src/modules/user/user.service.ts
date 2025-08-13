@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './user.entity';
-import {  bcryptHashSync} from 'bcrypt'
+import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
@@ -16,9 +16,12 @@ export class UserService {
       async create(user: CreateUserDto) {
         await this.validateEmail(user.email);
         
-        const createdUser = await this.userModel.create({...user, password: bcryptHashSync(user.password, 10),
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const createdUser = await this.userModel.create({
+            ...user,
+            password: hashedPassword,
 
-         })
+         });
 
             return createdUser
     }
@@ -30,13 +33,16 @@ export class UserService {
         if(user.email){
         await this.validateEmail(user.email);    
         }
-        
-        const updatedUser = await this.userModel.update(
-        { ...user},
-        {where: {user_id: id }, returning: true},
-    );
 
-        return updatedUser[1][0]
+        if (user.password) {
+            user.password = await bcrypt.hash(user.password, 10);
+        }
+        const [, [updatedUser]] = await this.userModel.update(
+            { ...user },
+            { where: { user_id: id }, returning: true },
+        );
+
+        return updatedUser;
     }
     async validateEmail(email: string) {
         const emailAlreadyExists = await this.userModel.findOne({
@@ -48,13 +54,13 @@ if(emailAlreadyExists){
 }
         return true
     }
-        async findByUSerName(username: string){
+        async findByUserName(username: string){
             const user = await this.userModel.findOne({
                 where: { username: username},
             });
             return user;
         }
-
+        
 
 }
 

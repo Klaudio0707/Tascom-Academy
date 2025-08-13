@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -26,7 +26,10 @@ export class AppController {
   getCapitalized(@Body() body: { text: string }): Promise<string> {
     return this.appService.getCapitalized(body.text);
   }
-
+  @Get('today')
+  getToday(): Promise<string> {
+    return this.appService.getToday();
+  }
   
 
   @Post('sum-fact')

@@ -1,12 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import {User} from '../user/user.entity'
 import { JwtService } from '@nestjs/jwt';
-import * as dotenv from "dotenv"
-import {compareSync as bcryptCompareSync} from 'bcrypt'
+import * as  bcrypt from 'bcrypt'
 import { InjectModel } from '@nestjs/sequelize';
 
-
-dotenv.config()
 
 @Injectable()
 export class AuthService {
@@ -22,7 +19,7 @@ export class AuthService {
         const user = await this.userModel.findOne({
             where: {username: username},
         });
-    if(!user || !bcryptCompareSync(password, user.dataValues.password)){
+    if(!user || !(await bcrypt.compare(password, user.dataValues.password))){
         throw new BadRequestException("user name or password incorrect")
     }
     const payload = {

@@ -2,10 +2,8 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 import { Request } from 'express';
-import * as dotenv from "dotenv"
 
 
-dotenv.config()
 @Injectable()
 export class AuthGuard implements CanActivate {
   private jwtExpirationTimeInSeconds: number;
