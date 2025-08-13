@@ -1,0 +1,12 @@
+{
+  "name": "nestjs-microservices-tutorial",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:math": "npm run start:dev --workspace=math-service",
+    "start:string": "npm run start:dev --workspace=string-service",
+    "start:gateway": "npm run start:dev --workspace=api-gateway"
+  }
+}
