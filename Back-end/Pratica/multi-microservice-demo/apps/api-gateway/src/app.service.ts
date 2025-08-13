@@ -9,12 +9,36 @@ export class AppService {
     @Inject('STRING_SERVICE') private readonly stringClient: ClientProxy,
   ) {}
 
-  // Envia uma mensagem para o math-service e espera a resposta
+
+
   async getSum(numbers: number[]): Promise<number> {
     return await firstValueFrom(this.mathClient.send({ cmd: 'sum' }, numbers));
   }
 
-  // Envia uma mensagem para o string-service e espera a resposta
+  async getSub(numbers: number[]): Promise<number> {
+    return await firstValueFrom(this.mathClient.send({ cmd: 'sub' }, numbers));
+  }
+
+  async getMult(numbers: number[]): Promise<number> {
+    return await firstValueFrom(this.mathClient.send({ cmd: 'mult' }, numbers));
+  }
+
+
+
+  async getSumAndFact(numbers: number[]) {
+    return await firstValueFrom(
+      this.mathClient.send({ cmd: 'sum_and_get_fact' }, numbers),
+    );
+  }
+
+  async getSubAndFact(numbers: number[]) {
+    return await firstValueFrom(
+      this.mathClient.send({ cmd: 'sub_and_get_fact' }, numbers),
+    );
+  }
+
+
+
   async getCapitalized(text: string): Promise<string> {
     return await firstValueFrom(
       this.stringClient.send({ cmd: 'capitalize' }, text),
