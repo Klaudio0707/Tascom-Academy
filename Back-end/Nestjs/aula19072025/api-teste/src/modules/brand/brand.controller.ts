@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dtos/create-brand.tdo';
 import { UpdateBrandDto } from './dtos/update-brand.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
-
+@UseGuards(AuthGuard)
 @Controller('brand')
 export class BrandController {
     brandModel: any;

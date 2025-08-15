@@ -72,13 +72,13 @@ export class VehicleService {
     }
 
 
-    // async remove(id: string) {
+    async remove(id: string) {
       
-    //     const vehicleToRemove = await this.findOne(id);
+        const vehicleToRemove = await this.findOne(id);
         
-    //     await this.vehicleRepository.destroy({ where: { vehicle_id: id } });
+        await this.vehicle.destroy({ where: { vehicle_id: id } });
 
     
-    //     return vehicleToRemove;
-    // }
+        return vehicleToRemove;
+    }
 }

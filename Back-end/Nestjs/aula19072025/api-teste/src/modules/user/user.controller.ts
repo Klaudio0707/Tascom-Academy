@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserService } from './user.service';
@@ -11,14 +11,14 @@ export class UserController {
     userModel: any;
     constructor(private readonly userService: UserService) { }
 
-    @Post()
+    @Post('new')
     create(
         @Body() user: CreateUserDto
     ) {
         return this.userService.create(user);
     }
     @UseGuards(AuthGuard)
-    @Get()
+    @Get('allUser')
     async findAll() {
         return await this.userService.findAll()
     }
@@ -30,6 +30,11 @@ export class UserController {
     ) {
 
         return await this.userService.update(id, user);
+    }
+    @Delete(':id')
+    @HttpCode(HttpStatus.NO_CONTENT) 
+    remove(@Param('id', ParseUUIDPipe) id: string) {
+        return this.userModel.remove(id);
     }
 }
 

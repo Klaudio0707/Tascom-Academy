@@ -25,7 +25,16 @@ export class UserService {
 
             return createdUser
     }
+    async findOne(id: string) {
+        const user = await this.userModel.findByPk(id, {
+            attributes: { exclude: ['password'] }
+        });
 
+        if (!user) {
+            throw new HttpException('Usuário não encontrado', HttpStatus.NOT_FOUND);
+        }
+        return user;
+    }
     async findAll(){
         return await this.userModel.findAll()
     }
@@ -61,6 +70,16 @@ if(emailAlreadyExists){
             return user;
         }
         
+        async remove(id: string) {
+            // 1. Garante que o usuário existe
+            const userToRemove = await this.findOne(id);
+            
+            // 2. Remove o usuário
+            await this.userModel.destroy({ where: { user_id: id } });
+            
+            // Retorna o usuário que foi removido (sem a senha) como confirmação
+            return userToRemove;
+        }
 
 }
 
