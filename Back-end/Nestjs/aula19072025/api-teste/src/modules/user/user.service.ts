@@ -4,6 +4,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { QueryUserDto } from './dtos/query-user.dto';
 
 
 @Injectable()
@@ -35,8 +36,13 @@ export class UserService {
         }
         return user;
     }
-    async findAll(){
-        return await this.userModel.findAll()
+    async findAll(query: QueryUserDto){
+        const currentPage = query.page -1
+        const offset = currentPage * query.limit
+        return await this.userModel.findAll({
+            offset: offset,
+            limit: query.limit,
+        })
     }
     async update(id: string, user: UpdateUserDto){
         if(user.email){
@@ -71,13 +77,8 @@ if(emailAlreadyExists){
         }
         
         async remove(id: string) {
-            // 1. Garante que o usuário existe
             const userToRemove = await this.findOne(id);
-            
-            // 2. Remove o usuário
             await this.userModel.destroy({ where: { user_id: id } });
-            
-            // Retorna o usuário que foi removido (sem a senha) como confirmação
             return userToRemove;
         }
 

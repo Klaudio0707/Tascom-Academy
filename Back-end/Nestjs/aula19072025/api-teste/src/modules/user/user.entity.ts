@@ -21,7 +21,7 @@ export class User extends Model<User, CreateUserDto> {
 
     @Column({
         type: DataType.STRING,
-        allowNull: false
+        allowNull: true
     })
     username: string
 

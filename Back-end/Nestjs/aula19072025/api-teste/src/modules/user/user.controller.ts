@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
+import { QueryUserDto } from './dtos/query-user.dto';
 
 
 
@@ -17,10 +18,16 @@ export class UserController {
     ) {
         return this.userService.create(user);
     }
-    @UseGuards(AuthGuard)
+    // @UseGuards(AuthGuard)
     @Get('allUser')
-    async findAll() {
-        return await this.userService.findAll()
+    async findAll(
+        @Param('limit') limit:number,
+        @Param('page') page: number,
+        @Query() query: QueryUserDto,
+    )
+     {
+        
+        return await this.userService.findAll(query)
     }
     @UseGuards(AuthGuard)
     @Patch(':id')

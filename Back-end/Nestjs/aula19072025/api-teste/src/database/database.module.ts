@@ -19,7 +19,7 @@ dotenv.config()
             models: [
                 User,Brand,CarModel,Vehicle
             ],
-            logging: true,
+            logging: false, //log do sequelize
             autoLoadModels: true
         }),
     ],

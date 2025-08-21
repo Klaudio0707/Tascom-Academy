@@ -8,7 +8,8 @@ import { CreateVehicleDto } from "./dtos/create-vehicle.dto";
     tableName: "vehicle",
     timestamps: true
 })
-export class Vehicle extends Model<Vehicle, CreateVehicleDto>{
+export class Vehicle extends Model<Vehicle,
+ CreateVehicleDto>{
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)

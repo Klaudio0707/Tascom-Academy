@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString, IsEmail, IsOptional, IsStrongPassword, minLength } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsString, IsEmail, IsOptional, IsStrongPassword } from "class-validator";
 
 
 

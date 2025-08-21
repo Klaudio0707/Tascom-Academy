@@ -22,7 +22,6 @@ export class VehicleController {
 
     @Get(':id')
     findOne(@Param('id', ParseUUIDPipe) id: string) {
-        // ParseUUIDPipe valida automaticamente se o 'id' é um UUID
         return this.vehicleService.findOne(id);
     }
 
