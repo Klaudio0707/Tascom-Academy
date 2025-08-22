@@ -6,7 +6,6 @@ import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { QueryUserDto } from './dtos/query-user.dto';
 
-
 @Injectable()
 export class UserService {
     constructor(
@@ -14,18 +13,40 @@ export class UserService {
         private readonly userModel: typeof User
     ) {}
 
-      async create(user: CreateUserDto) {
+ // src/modules/user/user.service.ts
+
+async create(user: CreateUserDto) {
+    console.log('--- 1. ROTA /user/new CHAMADA: Iniciando processo de criação ---');
+    console.log('Dados recebidos:', user);
+
+    try {
+        console.log('--- 2. Validando e-mail... ---');
         await this.validateEmail(user.email);
-        
+        console.log('--- 3. E-mail validado com sucesso! ---');
+
+        console.log('--- 4. Gerando hash da senha... ---');
         const hashedPassword = await bcrypt.hash(user.password, 10);
+        console.log('--- 5. Hash da senha gerado! ---');
+
+        console.log('--- 6. Inserindo usuário no banco de dados... ---');
         const createdUser = await this.userModel.create({
             ...user,
             password: hashedPassword,
+        });
+        console.log('--- 7. Usuário inserido com sucesso no banco! ---');
 
-         });
+        const { password, ...result } = createdUser.toJSON();
+        
+        console.log('--- 8. Retornando usuário criado. ---');
+        return result;
 
-            return createdUser
+    } catch (error) {
+        console.error('!!! ERRO NO PROCESSO DE CRIAÇÃO:', error);
+        // Re-lança o erro para que o NestJS possa tratá-lo adequadamente
+        throw error;
     }
+}
+
     async findOne(id: string) {
         const user = await this.userModel.findByPk(id, {
             attributes: { exclude: ['password'] }
@@ -36,52 +57,62 @@ export class UserService {
         }
         return user;
     }
-    async findAll(query: QueryUserDto){
-        const currentPage = query.page -1
-        const offset = currentPage * query.limit
-        return await this.userModel.findAll({
+
+    async findAll(query: QueryUserDto) {
+        // Melhoria: Lógica de paginação mais robusta.
+        const { page = 1, limit = 10 } = query;
+        const offset = (page - 1) * limit;
+
+        return this.userModel.findAll({
             offset: offset,
-            limit: query.limit,
-        })
+            limit: limit,
+            attributes: { exclude: ['password'] } // Boa prática: excluir senhas da listagem
+        });
     }
-    async update(id: string, user: UpdateUserDto){
-        if(user.email){
-        await this.validateEmail(user.email);    
+
+    async update(id: string, user: UpdateUserDto) {
+        // Garante que o usuário existe antes de tentar atualizar
+        await this.findOne(id);
+
+        if (user.email) {
+            await this.validateEmail(user.email);
         }
 
         if (user.password) {
             user.password = await bcrypt.hash(user.password, 10);
         }
+
+        // Correção: Padroniza o nome da coluna da chave primária para 'id'.
         const [, [updatedUser]] = await this.userModel.update(
             { ...user },
-            { where: { user_id: id }, returning: true },
+            { where: { id: id }, returning: true },
         );
-
-        return updatedUser;
+        
+        const { password, ...result } = updatedUser.toJSON();
+        return result;
     }
+
+    async remove(id: string) {
+        const userToRemove = await this.findOne(id);
+        // Correção: Padroniza o nome da coluna da chave primária para 'id'.
+        await this.userModel.destroy({ where: { id: id } });
+        return userToRemove; // Retorna o usuário que foi removido (sem a senha)
+    }
+
     async validateEmail(email: string) {
         const emailAlreadyExists = await this.userModel.findOne({
-            where: {email:email},
-        })    
+            where: { email: email },
+        });
 
-if(emailAlreadyExists){
-    throw new HttpException("Email já existente", HttpStatus.BAD_REQUEST)
-}
-        return true
+        if (emailAlreadyExists) {
+            throw new HttpException("Email já existente", HttpStatus.BAD_REQUEST);
+        }
     }
-        async findByUserName(username: string){
-            const user = await this.userModel.findOne({
-                where: { username: username},
-            });
-            return user;
-        }
-        
-        async remove(id: string) {
-            const userToRemove = await this.findOne(id);
-            await this.userModel.destroy({ where: { user_id: id } });
-            return userToRemove;
-        }
-
+    
+    async findByUserName(username: string) {
+        const user = await this.userModel.findOne({
+            where: { username: username },
+        });
+        return user; // Retorna o usuário com a senha, necessário para o login
+    }
 }
-
-//DATA TRANSFER OBJECT

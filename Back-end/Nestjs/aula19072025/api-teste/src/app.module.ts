@@ -7,7 +7,7 @@ import { BrandModule } from './modules/brand/brand.module';
 import { CarModelModule } from './modules/carModel/carModel.module';
 import { UserModule } from './modules/user/user.module';
 import { VehicleModule } from './modules/vehicle/vehicle.module';
-import { loggerMiddleware } from './shared/middlewares/logger.middleware';
+// import { loggerMiddleware } from './shared/middlewares/logger.middleware';
 import { FormatBodyMiddleware } from './shared/middlewares/formattBody.middleware';
 
 
@@ -24,7 +24,7 @@ import { FormatBodyMiddleware } from './shared/middlewares/formattBody.middlewar
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer){
-    consumer.apply(loggerMiddleware).forRoutes("*"),
+    // consumer.apply(loggerMiddleware).forRoutes("*"),
     consumer.apply(FormatBodyMiddleware).forRoutes("*")
   }
 }
