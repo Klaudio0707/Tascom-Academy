@@ -2,7 +2,7 @@ import { IsBoolean, IsNotEmpty, IsString, IsEmail, IsOptional, IsStrongPassword 
 
 
 
-export class CreateUserDto{
+export class CreateUserDto {
     @IsNotEmpty()
     @IsString()
     username: string;
@@ -15,7 +15,7 @@ export class CreateUserDto{
         minNumbers: 1,
         minSymbols: 1,
         minUppercase: 1,
-})
+    })
     password: string;
 
     @IsString()

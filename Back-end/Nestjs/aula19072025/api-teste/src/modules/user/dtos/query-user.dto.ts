@@ -2,7 +2,7 @@
 
 
 
-export class QueryUserDto{
+export class QueryUserDto {
 
     page: number;
     limit: number;

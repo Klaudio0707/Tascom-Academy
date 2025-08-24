@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { QueryUserDto } from './dtos/query-user.dto';
+import { ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
@@ -12,11 +13,19 @@ export class UserController {
     create(@Body() user: CreateUserDto) {
         return this.userService.create(user);
     }
-    // @UseGuards(AuthGuard)
+
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Listar Todos os Usuarios' })
+    @ApiQuery({ name: "describe", required: false, description: "Nome do Usuario" })
+    @UseGuards(AuthGuard)
     @Get('allUser')
     findAll(@Query() query: QueryUserDto) {
         return this.userService.findAll(query);
     }
+
+
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Atualização do usuario pelo id' })
     @UseGuards(AuthGuard)
     @Patch(':id')
     update(
@@ -25,6 +34,10 @@ export class UserController {
     ) {
         return this.userService.update(id, user);
     }
+
+
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Deleta o usuário pelo id' })
     @UseGuards(AuthGuard)
     @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)

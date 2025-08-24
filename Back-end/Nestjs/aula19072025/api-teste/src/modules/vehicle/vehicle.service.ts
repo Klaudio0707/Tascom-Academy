@@ -12,12 +12,12 @@ export class VehicleService {
     constructor(
         @InjectModel(Vehicle)
         private readonly vehicle: typeof Vehicle,
-    ) {}
+    ) { }
 
     async create(createVehicleDto: CreateVehicleDto) {
         const { placa } = createVehicleDto;
 
-       
+
         const existingVehicle = await this.vehicle.findOne({
             where: { placa },
         });
@@ -33,17 +33,17 @@ export class VehicleService {
         return newVehicle;
     }
 
-   
+
     async findAll() {
         return await this.vehicle.findAll({
             include: [
-                { model: User, attributes: ['user_id', 'name', 'email'] }, 
+                { model: User, attributes: ['user_id', 'name', 'email'] },
                 { model: CarModel, include: [{ model: Brand, attributes: ['name'] }] }
             ],
         });
     }
 
-    
+
     async findOne(id: string) {
         const vehicle = await this.vehicle.findOne({
             where: { vehicle_id: id },
@@ -57,9 +57,9 @@ export class VehicleService {
         return vehicle;
     }
 
-    
+
     async update(id: string, updateVehicleDto: UpdateVehicleDto) {
-      
+
         await this.findOne(id);
 
         const [numberOfAffectedRows, [updatedVehicle]] =
@@ -73,12 +73,12 @@ export class VehicleService {
 
 
     async remove(id: string) {
-      
+
         const vehicleToRemove = await this.findOne(id);
-        
+
         await this.vehicle.destroy({ where: { vehicle_id: id } });
 
-    
+
         return vehicleToRemove;
     }
 }

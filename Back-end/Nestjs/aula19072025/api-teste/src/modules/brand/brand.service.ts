@@ -26,7 +26,7 @@ export class BrandService {
             throw new HttpException('Marca não encontrada', HttpStatus.NOT_FOUND);
         }
 
-        // Valida se o novo nome de marca já existe em outro registro
+     
         if (brand.marca && brand.marca !== currentBrand.marca) {
             await this.checkIfBrandExists(brand.marca);
         }
@@ -43,7 +43,6 @@ export class BrandService {
         return await this.brandModel.findAll();
     }
 
-    // Método de validação com nome mais descritivo
     private async checkIfBrandExists(marca: string) {
         const brandAlreadyExists = await this.brandModel.findOne({
             where: { marca: marca },

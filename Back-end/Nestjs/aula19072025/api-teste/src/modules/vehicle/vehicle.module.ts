@@ -7,8 +7,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 @Module({
   imports: [
     SequelizeModule.forFeature([Vehicle]),
-],
+  ],
   providers: [VehicleService],
   controllers: [VehicleController]
 })
-export class VehicleModule {}
+export class VehicleModule { }

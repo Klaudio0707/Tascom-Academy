@@ -9,7 +9,7 @@ import { CreateVehicleDto } from "./dtos/create-vehicle.dto";
     timestamps: true
 })
 export class Vehicle extends Model<Vehicle,
- CreateVehicleDto>{
+    CreateVehicleDto> {
     @PrimaryKey
     @Default(DataType.UUIDV4)
     @Column(DataType.UUID)
@@ -54,7 +54,7 @@ export class Vehicle extends Model<Vehicle,
         allowNull: false
     })
     declare model_id: string
-    
+
     @BelongsTo(() => CarModel)
     declare carModel: CarModel
 }
